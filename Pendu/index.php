@@ -13,7 +13,6 @@ $lettersfound = array_fill(0, count($wordsplitted), '_');
 echo $titre . "\n\n";
 while (1) 
 {
-    print_r($wordsplitted);
     echo dessinPendu($tentatives);
     echo implode(' ', $lettersfound) . "\n";
 
@@ -29,7 +28,6 @@ while (1)
         echo "Error: you already tried this letter.\n";
     }
 
-    $letterstried[] = $letter;
     if (in_array($letter, $wordsplitted)) 
     {
         foreach ($wordsplitted as $index => $wordletter) 
@@ -54,4 +52,5 @@ while (1)
         else
             echo "No luck! the letter you entered is not in the word. You have ".$tentatives." tentatives left.\n";
     }
+    $letterstried[] = $letter;
 }

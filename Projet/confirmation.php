@@ -12,37 +12,11 @@
 		exit();
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
-	if ($_SESSION['dataUserPermissions'] < 111)
+	if ($_SESSION['dataUserPermissions'] < 111 || !isset($_GET['dataId']) || !isset($_GET['dataType']))
 	{
 		header('Location: denied.php');
 		exit();
 	}		
-
-	include 'functions.php';
-
-	if (isset($_POST['dataAction']))
-	{
-		if (is_numeric($_POST['dataAction']))
-		{
-			$todoArray = getTodos();
-			for ($i = 0; $i < sizeof($todoArray); $i++)
-			{	
-			    if($_POST['dataAction'] == $todoArray[$i][0])
-			    {
-			        unset($todoArray[$i]);
-			        break;
-			    }
-			}
-			saveTodos($todoArray);
-			header('Location: index.php');
-			exit();	
-		}
-		else
-		{
-			header('Location: index.php');
-			exit();
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,7 +28,13 @@
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
-		<form action="delete.php" method="post" id="dataDelete">
+		<form 
+		<?php 
+			if ($_GET['dataType'] == 1) 
+				echo "action='/controlleurs/deletetask.php'";
+			else if ($_GET['dataType'] == 2) 
+				echo "action='/controlleurs/deleteuser.php'";
+		?> method="post" id="dataDelete">
 			<section class="vh-100 gradient-custom">
 			  	<div class="container py-5 h-100">
 			    	<div class="row d-flex justify-content-center align-items-center h-100">
@@ -64,9 +44,14 @@
 			            			<div class="mb-md-5 mt-md-4 pb-5">
 			            				<img src="images/logo.png" width="300"></img>
 			              				<h2 class="fw-bold mb-2 text-uppercase">CONFIRMATION DE SUPPRESSION</h2>
-			              				<h6 class="fw-bold mb-2 text-uppercase">Suppression du tâche numéro: <?php echo $_GET['taskid']; ?></h6>
+			              				<h6 class="fw-bold mb-2 text-uppercase">Suppression <?php 
+										if ($_GET['dataType'] == 1) 
+											echo "du tâche";
+										else if ($_GET['dataType'] == 2) 
+											echo "d'utilisateur";
+										?> numéro: <?php echo $_GET['dataId']; ?></h6>
 			              				<p class="text-black-50 mb-5">Cette action est irréversible, vous voulez vraiment continuer?</p>
-			              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg px-5" name="dataAction" form="dataDelete" type="submit" <?php echo "value='".$_GET['taskid']."'" ?>>Supprimer</button>
+			              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg px-5" name="dataAction" form="dataDelete" type="submit" <?php echo "value='".$_GET['dataId']."'" ?>>Supprimer</button>
 			            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" form="dataDelete" type="submit" value="GoBack">Revenir en arrière</button>
 			            			</div>
 			          			</div>

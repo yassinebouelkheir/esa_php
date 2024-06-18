@@ -11,19 +11,20 @@
 	    header('Location: login.php');
 		exit();
 	}
+
 	$_SESSION['LAST_ACTIVITY'] = time();
+
 	if ($_SESSION['dataUserPermissions'] < 11111)
 	{
 		header('Location: denied.php');
 		exit();
 	}	
-	include 'functions.php';
-	$result = "";
-	$dataUserPermissions = $_SESSION['dataUserPermissions'];
-	$dataUsername = $_SESSION['dataUsername'];
-	$dataUserId = $_SESSION['dataUserId'];
 
+	include 'functions.php';
+
+	$result = "";
 	$userArray = getUsers();
+
 	if (isset($_GET['success']))
 	{
 		if ($_GET['success'] == 1)
@@ -49,7 +50,7 @@
 					<div class="navbar-nav">
 						<a class="nav-link" aria-current="page" href="index.php">Accueil</a>
 						<?php 
-							if ($dataUserPermissions > 1111) {
+							if ($_SESSION['dataUserPermissions'] > 1111) {
 								echo "<a class='nav-link active' href='users.php'>Utilisateurs</a>";
 							}
 						?>
@@ -58,9 +59,9 @@
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
 							if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30'>".$dataUsername;
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
               				else 
-              					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$dataUsername;
+              					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
               				?>
 						</a>
 						<a class="nav-link" href="logout.php">Déconnexion</a>
@@ -96,27 +97,27 @@
 					  </thead>
 					  <tbody>
 					  	<?php
-						foreach ($userArray as $data) 
-						{
-							if($data[0] == "Id")
-								continue;
-							echo "<tr>";
-							echo "<th scope='row'>".$data[0]."</th>";
-							echo "<td>".$data[1]."</td>";
-							$userlevel = "";
-						    if ($data[3] == 0) $userlevel = "Stagaire";
-	      					if ($data[3] == 1) $userlevel = "Utilisateur";
-	      					if ($data[3] == 11) $userlevel = "Modérateur";
-	      					if ($data[3] == 111) $userlevel = "Chef des modérateurs";
-	      					if ($data[3] == 1111) $userlevel = "Administrateur";
-	      					if ($data[3] == 11111) $userlevel = "Gestionnaire";
-							echo "<td>".$userlevel."</td>";
-							echo "<td>".$data[4]."</td>";
-							echo "<td>".$data[5]."</td>";
-							echo "<td>".$data[6]."</td>";
-							echo "<td>".$data[7]."</td>";
-							echo "<td><a class='nav-link' href='modifyuser.php?userid=".$data[0]."'>Modifier</a><a class='nav-link' href='deleteuser.php?userid=".$data[0]."'>Supprimer</a></td></tr>";
-						}
+							foreach ($userArray as $data) 
+							{
+								if($data[0] == "Id")
+									continue;
+								echo "<tr>";
+								echo "<th scope='row'>".$data[0]."</th>";
+								echo "<td>".$data[1]."</td>";
+								$userlevel = "";
+							    if ($data[3] == 0) $userlevel = "Stagaire";
+		      					if ($data[3] == 1) $userlevel = "Utilisateur";
+		      					if ($data[3] == 11) $userlevel = "Modérateur";
+		      					if ($data[3] == 111) $userlevel = "Chef des modérateurs";
+		      					if ($data[3] == 1111) $userlevel = "Administrateur";
+		      					if ($data[3] == 11111) $userlevel = "Gestionnaire";
+								echo "<td>".$userlevel."</td>";
+								echo "<td>".$data[4]."</td>";
+								echo "<td>".$data[5]."</td>";
+								echo "<td>".$data[6]."</td>";
+								echo "<td>".$data[7]."</td>";
+								echo "<td><a class='nav-link' href='/controlleurs/modifyuser.php?userid=".$data[0]."'>Modifier</a><a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=2'>Supprimer</a></td></tr>";
+							}
 					  	?>
 					  </tbody>
 					</table>
@@ -125,7 +126,7 @@
 	        <div class='row customrowlast'>
 	        	<div class='col-lg-12'>
 	                <h1>Ajouter un nouvel utilisateur</h1>
-	                <form action='adduser.php' method='POST' id='addUser'>
+	                <form action='/controlleurs/adduser.php' method='POST' id='addUser'>
 						<fieldset>
 							<div class='mb-3'>
 							  	<label for='dataUsername' class='form-label'>Nom d'utilisateur</label>

@@ -15,12 +15,12 @@
 
 	include 'functions.php';
 
-	$dataUserPermissions = $_SESSION['dataUserPermissions'];
 	$dataUsername = $_SESSION['dataUsername'];
 	$dataUserId = $_SESSION['dataUserId'];
 
 	$userArray = getUsers();
 	$todoArray = getTodos();
+
 	if (isset($_POST['dataUserId']))
 	{
 		if ($_POST['dataUserId'] == -1)
@@ -59,9 +59,8 @@
 					<div class="navbar-nav">
 						<a class="nav-link active" aria-current="page" href="index.php">Accueil</a>
 						<?php 
-							if ($dataUserPermissions > 1111) {
+							if ($_SESSION['dataUserPermissions'] > 1111)
 								echo "<a class='nav-link' href='users.php'>Utilisateurs</a>";
-							}
 						?>
 					</div>
 					<div class="navbar-nav ml-auto">
@@ -79,8 +78,8 @@
 			</div>
 		</nav>
 		<div class="container containerspecial">
-			<?php 
-			if ($dataUserPermissions > 111) 
+		<?php 
+			if ($_SESSION['dataUserPermissions'] > 111) 
 			{
 		        echo "<div class='row'>
 		            <div class='col-lg-12'>
@@ -88,16 +87,17 @@
 		            	<div class='input-group flex-nowrap'>
 		            		<form action='index.php' method='POST' id='userSelect'>
 							  	<select class='form-select' name='dataUserId' style='width: 280px;' form='userSelect'>";
-							  		
-							  		if($dataUserId != -1) echo "<option value='-1' name='dataUserId'>-1 : Tout le monde</option>";
-									echo "<option value='".$dataUserId."' selected>".$dataUserId." : ".$dataUsername."</option>";
-									foreach ($userArray as $data) 
+
+						  		if($dataUserId != -1) echo "<option value='-1' name='dataUserId'>-1 : Tout le monde</option>";
+								echo "<option value='".$dataUserId."' selected>".$dataUserId." : ".$dataUsername."</option>";
+								foreach ($userArray as $data) 
+								{
+								    if($dataUserId != $data[0] && $data[1] != "Username")
 									{
-									    if($dataUserId != $data[0] && $data[1] != "Username")
-										{
-										    echo "<option value='".$data[0]."'>".$data[0]." : ".$data[1]."</option>";
-									    }
+									    echo "<option value='".$data[0]."'>".$data[0]." : ".$data[1]."</option>";
 								    }
+							    }
+
 							  	echo "</select>
 							  	<button class='btn btn-primary' form='userSelect' type='submit'>Sélectionner</button>
 							</form>
@@ -108,11 +108,11 @@
 	    	}
 	        else 
 	        	echo "<div class='row'>";
-	       	?>
+	    ?>
 	            <div class="col-lg-12">
 	                <h1>Tâches à réaliser</h1>
 	                <table class="table table-bordered">
-					  <thead>
+					  	<thead>
 					    <tr>
 					      <th scope="col">ID</th>
 					      <th scope="col">Tâche</th>
@@ -120,30 +120,30 @@
 					      <th scope="col">Date limite</th>
 					      <th scope="col"></th>
 					    </tr>
-					  </thead>
-					  <tbody>
+					  	</thead>
+					  	<tbody>
 					  	<?php
-						foreach ($todoArray as $data) 
-						{
-					        if(($data[3] == $dataUserId || $data[3] == -1) && $data[7] == 0)
-					        {
-							    echo "<tr>";
-							    echo "<th scope='row'>".$data[0]."</th>";
-							    echo "<td>".$data[4]."</td>";
-							    echo "<td>".$data[2]."</td>";
-							    echo "<td>".$data[5]."</td>";
-							    echo "<td>";
-							    if ($dataUserPermissions > 0)
-							    	echo "<a class='nav-link' href='toggle.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
-							    if ($dataUserPermissions > 1)
-									echo "<a class='nav-link' href='edit.php?taskid=".$data[0]."'>Modifier</a>";
-								if ($dataUserPermissions > 11)
-									echo "<a class='nav-link' href='delete.php?taskid=".$data[0]."'>Supprimer</a>";
-							    echo "</td></tr>";
-					        }
-						}
+							foreach ($todoArray as $data) 
+							{
+						        if(($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
+						        {
+								    echo "<tr>";
+								    echo "<th scope='row'>".$data[0]."</th>";
+								    echo "<td>".$data[4]."</td>";
+								    echo "<td>".$data[2]."</td>";
+								    echo "<td>".$data[5]."</td>";
+								    echo "<td>";
+								    if ($_SESSION['dataUserPermissions'] > 0)
+								    	echo "<a class='nav-link' href='/controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
+								    if ($_SESSION['dataUserPermissions'] > 1)
+										echo "<a class='nav-link' href='/controlleurs/edittask.php?taskid=".$data[0]."'>Modifier</a>";
+									if ($_SESSION['dataUserPermissions'] > 11)
+										echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
+								    echo "</td></tr>";
+						        }
+							}
 					  	?>
-					  </tbody>
+					  	</tbody>
 					</table>
 	            </div>
 	        </div>
@@ -175,10 +175,10 @@
 							    echo "<td>".$data[5]."</td>";
 							    echo "<td>".$data[6]."</td>";
 							    echo "<td>".getUsername($data[8])."</td>";
-							    if ($dataUserPermissions > 0)
-							    	echo "<td><a class='nav-link' href='toggle.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
-							    if ($dataUserPermissions > 11)
-							    	echo "<a class='nav-link' href='delete.php?taskid=".$data[0]."'>Supprimer</a>";
+							    if ($_SESSION['dataUserPermissions'] > 0)
+							    	echo "<td><a class='nav-link' href='/controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
+							    if ($_SESSION['dataUserPermissions'] > 11)
+							    	echo "<a class='nav-link' href='deletetask.php?taskid=".$data[0]."'>Supprimer</a>";
 							    echo "</td></tr>";
 					        }
 						}
@@ -187,11 +187,11 @@
 					</table>
 	            </div>
 	        </div>
-	        <?php if ($dataUserPermissions > 111) {
+	        <?php if ($_SESSION['dataUserPermissions'] > 111) {
 	        echo "<div class='row customrowlast'>
 	        	<div class='col-lg-12'>
 	                <h1>Ajouter une Tâche pour ".$dataUsername."</h1>
-	                <form action='add.php' method='POST' id='addTask'>
+	                <form action='/controlleurs/addtask.php' method='POST' id='addTask'>
 						<fieldset>
 							<div class='mb-3'>
 							  	<label for='dataTaskText' class='form-label'>Tâche</label>

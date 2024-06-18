@@ -12,31 +12,12 @@
 		exit();
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
-	if ($_SESSION['dataUserPermissions'] < 11)
+
+	if ($_SESSION['dataUserPermissions'] < 11 || !isset($_GET['taskid']))
 	{
 		header('Location: denied.php');
 		exit();
 	}		
-	if (isset($_GET['taskid']))
-	{
-
-	}
-	else
-	{
-		if (!isset($_POST['dataTaskId']) || empty($_POST['dataTaskId']))
-		{
-			header('Location: index.php');
-			exit();
-		}
-		if (isset($_POST['dataTaskDL']) || !empty($_POST['dataTaskDL']))
-		{
-
-		}
-		if (isset($_POST['dataTaskText']) || !empty($_POST['dataTaskText']))
-		{
-
-		}
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -48,7 +29,7 @@
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
-		<form action="edit.php" method="post" id="dataEdit">
+		<form action="/controlleurs/edittask.php" method="post" id="dataEdit">
 			<section class="vh-100 gradient-custom">
 			  	<div class="container py-5 h-100">
 			    	<div class="row d-flex justify-content-center align-items-center h-100">

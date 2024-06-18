@@ -34,6 +34,7 @@
 
   			$uploadFileDir = 'images/user/';
   			$dest_path = $uploadFileDir . $newFileName;
+  			
 	      	if(move_uploaded_file($fileTmpPath, $dest_path) == false) 
 	      	{
 	        	$error = 'Veuillez réssayez plus tard.';
@@ -66,10 +67,10 @@
 			            			<div class="mb-md-5 mt-md-4 pb-5">
 			            				<img src="images/logo.png" width="300"></img>
 			              				<?php 
-			              				if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-			              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' width='150'></img>";
-			              				else 
-			              					echo "<img src='images/profile.png' width='150'></img>";
+				              				if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
+				              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' width='150'></img>";
+				              				else 
+				              					echo "<img src='images/profile.png' width='150'></img>";
 
 			              					$userlevel = "";
 			              					if ($_SESSION['dataUserPermissions'] == 0) $userlevel = "Stagaire";

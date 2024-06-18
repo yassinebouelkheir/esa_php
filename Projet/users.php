@@ -28,7 +28,7 @@
 		exit();
 	}	
 
-	include 'functions.php';
+	include 'controlleurs/functions.php';
 
 	$result = "";
 	$userArray = getUsers();
@@ -124,7 +124,7 @@
 								echo "<td>".$data[5]."</td>";
 								echo "<td>".$data[6]."</td>";
 								echo "<td>".$data[7]."</td>";
-								echo "<td><a class='nav-link' href='/controlleurs/modifyuser.php?userid=".$data[0]."'>Modifier</a><a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=2'>Supprimer</a></td></tr>";
+								echo "<td><a class='nav-link' href='controlleurs/modifyuser.php?userid=".$data[0]."'>Modifier</a><a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=2'>Supprimer</a></td></tr>";
 							}
 					  	?>
 					  </tbody>
@@ -134,7 +134,7 @@
 	        <div class='row customrowlast'>
 	        	<div class='col-lg-12'>
 	                <h1>Ajouter un nouvel utilisateur</h1>
-	                <form action='/controlleurs/adduser.php' method='POST' id='addUser'>
+	                <form action='controlleurs/adduser.php' method='POST' id='addUser'>
 						<fieldset>
 							<div class='mb-3'>
 							  	<label for='dataUsername' class='form-label'>Nom d'utilisateur</label>

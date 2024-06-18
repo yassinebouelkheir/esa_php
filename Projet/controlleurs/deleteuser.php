@@ -10,19 +10,19 @@
 	session_start();
 	if (!isset($_SESSION['dataUsername']))
 	{
-		header('Location: ../login.php');
+		header('Location: ./login.php');
 		exit();
 	}
 	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
 	    session_unset();
 	    session_destroy();
-	    header('Location: ../login.php');
+	    header('Location: ./login.php');
 		exit();
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 	if ($_SESSION['dataUserPermissions'] < 11111)
 	{
-		header('Location: ../denied.php');
+		header('Location: ./denied.php');
 		exit();
 	}		
 
@@ -42,12 +42,12 @@
 			    }
 			}
 			saveUsers($usersArray);
-			header('Location: ../users.php');
+			header('Location: ./users.php');
 			exit();	
 		}
 		else
 		{
-			header('Location: ../users.php');
+			header('Location: ./users.php');
 			exit();
 		}
 	}

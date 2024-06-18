@@ -12,7 +12,7 @@
 	function getTodos()
 	{
 		$array = array();
-		if (($open = fopen("../data/todos.csv", "r")) !== false) {
+		if (($open = fopen("./data/todos.csv", "r")) !== false) {
 		    while (($data = fgetcsv($open, 1000, ";")) !== false) {
 		        $array[] = $data;
 		    }
@@ -23,7 +23,7 @@
 
 	function saveTodos(array $array)
 	{
-		$open = fopen('../data/todos.csv', 'w+'); 
+		$open = fopen('./data/todos.csv', 'w+'); 
 		foreach ($array as $data)
 		{
 		   fputcsv($open, $data, ';'); 
@@ -33,7 +33,7 @@
 
 	function getUsers()
 	{
-		if (($open = fopen("../data/users.csv", "r")) !== false) {
+		if (($open = fopen("./data/users.csv", "r")) !== false) {
 		    while (($data = fgetcsv($open, 1000, ";")) !== false) {
 		        $array[] = $data;
 		    }
@@ -44,7 +44,7 @@
 
 	function saveUsers(array $array)
 	{
-		$open = fopen('../data/users.csv', 'w+'); 
+		$open = fopen('./data/users.csv', 'w+'); 
 		foreach ($array as $data)
 		{
 		   fputcsv($open, $data, ';'); 

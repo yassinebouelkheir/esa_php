@@ -21,7 +21,7 @@
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 
-	include 'functions.php';
+	include 'controlleurs/functions.php';
 
 	$dataUsername = $_SESSION['dataUsername'];
 	$dataUserId = $_SESSION['dataUserId'];
@@ -142,9 +142,9 @@
 								    echo "<td>".$data[5]."</td>";
 								    echo "<td>";
 								    if ($_SESSION['dataUserPermissions'] > 0)
-								    	echo "<a class='nav-link' href='/controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
+								    	echo "<a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
 								    if ($_SESSION['dataUserPermissions'] > 1)
-										echo "<a class='nav-link' href='/controlleurs/edittask.php?taskid=".$data[0]."'>Modifier</a>";
+										echo "<a class='nav-link' href='controlleurs/edittask.php?taskid=".$data[0]."'>Modifier</a>";
 									if ($_SESSION['dataUserPermissions'] > 11)
 										echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
 								    echo "</td></tr>";
@@ -184,9 +184,9 @@
 							    echo "<td>".$data[6]."</td>";
 							    echo "<td>".getUsername($data[8])."</td>";
 							    if ($_SESSION['dataUserPermissions'] > 0)
-							    	echo "<td><a class='nav-link' href='/controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
+							    	echo "<td><a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
 							    if ($_SESSION['dataUserPermissions'] > 11)
-							    	echo "<a class='nav-link' href='deletetask.php?taskid=".$data[0]."'>Supprimer</a>";
+							    	echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
 							    echo "</td></tr>";
 					        }
 						}
@@ -199,7 +199,7 @@
 	        echo "<div class='row customrowlast'>
 	        	<div class='col-lg-12'>
 	                <h1>Ajouter une Tâche pour ".$dataUsername."</h1>
-	                <form action='/controlleurs/addtask.php' method='POST' id='addTask'>
+	                <form action='controlleurs/addtask.php' method='POST' id='addTask'>
 						<fieldset>
 							<div class='mb-3'>
 							  	<label for='dataTaskText' class='form-label'>Tâche</label>

@@ -14,7 +14,7 @@
 		exit();
 	}
 
-	include 'functions.php';
+	include 'controlleurs/functions.php';
 
 	$error = false;
 	if (isset($_POST['dataUsername']) && isset($_POST['dataPassword']))

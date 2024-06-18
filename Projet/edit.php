@@ -37,7 +37,7 @@
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body>
-		<form action="/controlleurs/edittask.php" method="post" id="dataEdit">
+		<form action="controlleurs/edittask.php" method="post" id="dataEdit">
 			<section class="vh-100 gradient-custom">
 			  	<div class="container py-5 h-100">
 			    	<div class="row d-flex justify-content-center align-items-center h-100">

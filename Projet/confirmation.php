@@ -39,9 +39,9 @@
 		<form 
 		<?php 
 			if ($_GET['dataType'] == 1) 
-				echo "action='/controlleurs/deletetask.php'";
+				echo "action='controlleurs/deletetask.php'";
 			else if ($_GET['dataType'] == 2) 
-				echo "action='/controlleurs/deleteuser.php'";
+				echo "action='controlleurs/deleteuser.php'";
 		?> method="post" id="dataDelete">
 			<section class="vh-100 gradient-custom">
 			  	<div class="container py-5 h-100">

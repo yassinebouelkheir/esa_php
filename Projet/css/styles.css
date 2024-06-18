@@ -1,0 +1,29 @@
+body 
+{
+	background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.special-img 
+{
+    position: relative;
+    top: -5px;
+    float: left;
+    left: -5px;
+}
+.containerspecial 
+{ 
+    background-color: white;
+    padding: 40px; 
+    height: 100vh;
+}
+.customrow
+{ 
+    margin-top: 40px;
+}
+
+.customrowlast
+{ 
+    margin-top: 40px;
+    padding-bottom: 160px;
+}

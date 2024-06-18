@@ -1,3 +1,11 @@
+<!--
+	@filename  : functions.php 
+    @projet    : Task Organiser
+    @author    : Yassine BOUELKHEIR
+    @version   : 1.0
+    @created   : 18/06/2024
+-->
+
 <?php
 	date_default_timezone_set('Europe/Brussels');
 	

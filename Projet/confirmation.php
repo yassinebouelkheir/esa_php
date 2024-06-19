@@ -42,7 +42,7 @@
 				echo "action='controlleurs/deletetask.php'";
 			else if ($_GET['dataType'] == 2) 
 				echo "action='controlleurs/deleteuser.php'";
-		?> method="post" id="dataDelete">
+		?> method="post" id="dataConfirm">
 			<section class="vh-100 gradient-custom">
 			  	<div class="container py-5 h-100">
 			    	<div class="row d-flex justify-content-center align-items-center h-100">
@@ -59,8 +59,8 @@
 											echo "d'utilisateur";
 										?> numéro: <?php echo $_GET['dataId']; ?></h6>
 			              				<p class="text-black-50 mb-5">Cette action est irréversible, vous voulez vraiment continuer?</p>
-			              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg px-5" name="dataAction" form="dataDelete" type="submit" <?php echo "value='".$_GET['dataId']."'" ?>>Supprimer</button>
-			            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" form="dataDelete" type="submit" value="GoBack">Revenir en arrière</button>
+			              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg px-5" name="dataAction" form="dataConfirm" type="submit" <?php echo "value='".$_GET['dataId']."'" ?>>Supprimer</button>
+			            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" form="dataConfirm" type="submit" value="GoBack">Revenir en arrière</button>
 			            			</div>
 			          			</div>
 			        		</div>

@@ -1,9 +1,9 @@
 <!--
-	@filename  : edittask.php 
+	@filename  : edituser.php 
     @projet    : Task Organiser
     @author    : Yassine BOUELKHEIR
     @version   : 1.0
-    @created   : 18/06/2024
+    @created   : 19/06/2024
 -->
 
 <?php
@@ -26,9 +26,9 @@
 		header('Location: ../denied.php');
 		exit();
 	}		
-	if (!isset($_POST['dataTaskId']) || empty($_POST['dataTaskId']))
+	if (!isset($_POST['dataUserId']) || empty($_POST['dataUserId']))
 	{
-		header('Location: ../index.php');
+		header('Location: ../users.php');
 		exit();
 	}
 ?>

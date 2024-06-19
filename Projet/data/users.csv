@@ -1,5 +1,4 @@
 0;admin;d033e22ae348aeb5660fc2140aec35850c4da997;11111;14/06/1998;admin@localhost;0412356789;"Rue de bruxelles 2, 5000 Namur"
 1;test;727ad883d8d21946c0b474ba89df2bd423578359;1;09/06/1999;test@localhost;0454298121;"Rue des fous 129, 1000 Bruxelles"
 2;user;350dd005747bd71aeee826e10062afcf1ae31ca7;111;18/11/1996;user@localhost;0489326381;"Rue Piret Pauchet 66, 5000 Namur"
-3;stagaire1;9128a7171446f0dd14b446817a406fe3f5f7dee4;0;19/11/2026;stagaire@localhost;0439824512;"Rue du pont 28, 4000 Liège"
 Id;Username;Password;Permissions;DateN;Email;Tel;Addr

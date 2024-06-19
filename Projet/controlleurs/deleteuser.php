@@ -28,14 +28,14 @@
 
 	include 'functions.php';
 
-	if (isset($_GET['userid']))
+	if (isset($_POST['dataAction']))
 	{
-		if (is_numeric($_GET['userid']))
+		if (is_numeric($_POST['dataAction']))
 		{
 			$usersArray = getUsers(1);
 			for ($i = 0; $i < sizeof($usersArray); $i++)
 			{	
-			    if(($_GET['userid'] == $usersArray[$i][0]) && ($_GET['userid'] != $_SESSION['dataUserId']))
+			    if(($_POST['dataAction'] == $usersArray[$i][0]) && ($_POST['dataAction'] != $_SESSION['dataUserId']))
 			    {
 			        unset($usersArray[$i]);
 			        break;

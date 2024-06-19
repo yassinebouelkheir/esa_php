@@ -40,6 +40,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/222ae32bee.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body style="background-image: none;">
@@ -78,102 +79,90 @@
 						{
 							switch ($_GET['success']) {
 								case 0:
-		                			echo "<h6 style='color: red;'>Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.<h6>";
+		                			echo "<h6 style='color: red;'>Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.</h6>";
 		                			break;
 		                		case 1:
-		                			echo "<h6 style='color: green;'>L'utilisateur a été ajouté avec success.<h6>";
+		                			echo "<h6 style='color: green;'>L'utilisateur a été ajouté avec success.</h6>";
 		                			break;
 		                		case 2:
-		                			echo "<h6 style='color: green;'>Les données de L'utilisateur a été modifié avec succes.<h6>";
+		                			echo "<h6 style='color: green;'>Les données de L'utilisateur a été modifié avec succes.</h6>";
 		                			break;
 		                		case 3:
-		                			echo "<h6 style='color: green;'>Le compte de l'utilisateur a été supprimé définitivement.<h6>";
+		                			echo "<h6 style='color: green;'>Le compte de l'utilisateur a été supprimé définitivement.</h6>";
 		                			break;
 		                		default:
-		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.<h6>";
+		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.</h6>";
 		                			break;
 							}
 	                	}
 	                ?>
-	                <table class="table table-bordered">
-					  <thead>
-					    <tr>
-					      <th scope="col">ID</th>
-					      <th scope="col">Nom d'utilisateur</th>
-					      <th scope="col">Poste</th>
-					      <th scope="col">Date de naissance</th>
-					      <th scope="col">Email</th>
-					      <th scope="col">Tél</th>
-					      <th scope="col">Adresse</th>
-					      <th scope="col"></th>
-					    </tr>
-					  </thead>
-					  <tbody>
-					  	<?php
-							foreach ($userArray as $data) 
-							{
-								if($data[0] == "Id")
-									continue;
-								echo "<tr>";
-								echo "<th scope='row'>".$data[0]."</th>";
-								echo "<td>".$data[1]."</td>";
-								$userlevel = "";
-							    if ($data[3] == 0) $userlevel = "Stagaire";
-		      					if ($data[3] == 1) $userlevel = "Utilisateur";
-		      					if ($data[3] == 11) $userlevel = "Modérateur";
-		      					if ($data[3] == 111) $userlevel = "Chef des modérateurs";
-		      					if ($data[3] == 1111) $userlevel = "Administrateur";
-		      					if ($data[3] == 11111) $userlevel = "Gestionnaire";
-								echo "<td>".$userlevel."</td>";
-								echo "<td>".$data[4]."</td>";
-								echo "<td>".$data[5]."</td>";
-								echo "<td>".$data[6]."</td>";
-								echo "<td>".$data[7]."</td>";
-								echo "<td><a class='nav-link' href='controlleurs/modifyuser.php?userid=".$data[0]."'>Modifier</a><a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=2'>Supprimer</a></td></tr>";
-							}
-					  	?>
-					  </tbody>
-					</table>
-	            </div>
-	        </div>
-	        <div class='row customrowlast'>
-	        	<div class='col-lg-12'>
-	                <h1>Ajouter un nouvel utilisateur</h1>
 	                <form action='controlleurs/adduser.php' method='POST' id='addUser'>
-						<fieldset>
-							<div class='mb-3'>
-							  	<label for='dataUsername' class='form-label'>Nom d'utilisateur</label>
-							  	<input type='text' id='dataUsername' name='dataUsername' form='addUser' class='form-control' placeholder="Entrer le nom d'utilisateur(e)" required="required">
-							</div>
-							<div class='mb-3'>
-							  	<label for='dataUserLevel' class='form-label'>Poste</label>
-							  	<select id="dataUserLevel" name="dataUserLevel" form='addUser' class='form-control' required="required">
-									<option value="0">Stagaire</option>
-									<option value="1">Utilisateur</option>
-									<option value="11">Modérateur</option>
-									<option value="111">Chef des modérateurs</option>
-									<option value="1111">Administrateur</option>
-									<option value="11111">Gestionnaire</option>
-								</select>
-							</div>
-							<div class='mb-3'>
-							  	<label for='dataUserDateN' class='form-label'>Date de naissance</label>
-							  	<input type='date' id='dataUserDateN' name='dataUserDateN' form='addUser' class='form-control' <?php echo "max='".date('Y-m-d', strtotime("-18 year", time()))."'" ?> required="required">
-							</div>
-							<div class='mb-3'>
-							  	<label for='dataUserEmail' class='form-label'>Email</label>
-							  	<input type='email' id='dataUserEmail' name='dataUserEmail' form='addUser' class='form-control' placeholder="Entrer l'email" required="required">
-							</div>
-							<div class='mb-3'>
-							  	<label for='dataUserPhone' class='form-label'>Numéro de tel</label>
-							  	<input type='tel' pattern="04[0-9]{8}" id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="Entrer le numéro de gsm (04xxxxxxxx)" required="required">
-							</div>
-							<div class='mb-3'>
-							  	<label for='dataUserAddr' class='form-label'>Adresse</label>
-							  	<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Entrer l'adresse de résidence" maxlength='64' required="required">
-							</div>
-							<button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'>Ajouter et envoyer le mot de passe</button>
-						</fieldset>
+		                <table class="table table-bordered">
+						  <thead>
+						    <tr>
+						      <th scope="col">ID</th>
+						      <th scope="col">Nom d'utilisateur</th>
+						      <th scope="col">Poste</th>
+						      <th scope="col">Date de naissance</th>
+						      <th scope="col">Email</th>
+						      <th scope="col">Tél</th>
+						      <th scope="col">Adresse</th>
+						      <th scope="col"></th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						  	<?php
+								foreach ($userArray as $data) 
+								{
+									if($data[0] == "Id")
+										continue;
+									echo "<tr>";
+									echo "<th scope='row'>".$data[0]."</th>";
+									echo "<td>".$data[1]."</td>";
+									$userlevel = "";
+								    if ($data[3] == 0) $userlevel = "Stagaire";
+			      					if ($data[3] == 1) $userlevel = "Utilisateur";
+			      					if ($data[3] == 11) $userlevel = "Modérateur";
+			      					if ($data[3] == 111) $userlevel = "Chef des modérateurs";
+			      					if ($data[3] == 1111) $userlevel = "Administrateur";
+			      					if ($data[3] == 11111) $userlevel = "Gestionnaire";
+									echo "<td>".$userlevel."</td>";
+									echo "<td>".$data[4]."</td>";
+									echo "<td>".$data[5]."</td>";
+									echo "<td>".$data[6]."</td>";
+									echo "<td>".$data[7]."</td>";
+									echo "<td><a href='controlleurs/modifyuser.php?userid=".$data[0]."'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;<a href='confirmation.php?dataId=".$data[0]."&dataType=2'><i class='fas fa-trash-alt'></i></a></td></tr>";
+								}
+						  	?>
+						  	<tr>
+						  		<th scope='row'>x</th>
+						  		<td><input type='text' id='dataUsername' name='dataUsername' form='addUser' class='form-control' placeholder="Nom d'utilisateur(e)" required="required"></td>
+						  		<td>
+						  			<select id="dataUserLevel" name="dataUserLevel" form='addUser' class='form-control' required="required">
+										<option value="0">Stagaire</option>
+										<option value="1">Utilisateur</option>
+										<option value="11">Modérateur</option>
+										<option value="111">Chef des modérateurs</option>
+										<option value="1111">Administrateur</option>
+										<option value="11111">Gestionnaire</option>
+									</select>
+								</td>
+						  		<td>
+						  			<input type='date' id='dataUserDateN' name='dataUserDateN' form='addUser' class='form-control' <?php echo "max='".date('Y-m-d', strtotime("-18 year", time()))."'" ?> required="required">
+						  		</td>
+						  		<td>
+						  			<input type='email' id='dataUserEmail' name='dataUserEmail' form='addUser' class='form-control' placeholder="Email" required="required">
+						  		</td>
+						  		<td>
+						  			<input type='tel' pattern="04[0-9]{8}" id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="(04xxxxxxxx)" required="required">
+						  		</td>
+						  		<td>
+						  			<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Adresse" maxlength='64' required="required">
+						  		</td>
+						  		<td><button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'><i class='fas fa-plus'></i></button></td>
+						  	</tr>
+						  </tbody>
+						</table>
 					</form>
 	            </div>
 	        </div>

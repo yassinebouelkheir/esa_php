@@ -75,9 +75,9 @@
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
 							if (file_exists("images/users/".$_SESSION['dataUserId'].".jpeg"))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg?cachermv=".random_int(100, 999)."' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$dataUsername;
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg?cachermv=".random_int(100, 999)."' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$_SESSION['dataUsername'];
               				else 
-              					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$dataUsername;
+              					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
               				?>
 						</a>
 						<a class="nav-link" href="logout.php">Déconnexion</a>
@@ -124,19 +124,19 @@
 						{
 							switch ($_GET['success']) {
 		                		case 1:
-		                			echo "<h6 style='color: green;'>La tâche a été ajouté avec success pour l'utilisateur sélectionné.<h6>";
+		                			echo "<h6 style='color: green;'>La tâche a été ajouté avec success pour l'utilisateur sélectionné.</h6>";
 		                			break;
 		                		case 2:
-		                			echo "<h6 style='color: green;'>La tâche a été modifié et publié avec succes.<h6>";
+		                			echo "<h6 style='color: green;'>La tâche a été modifié et publié avec succes.</h6>";
 		                			break;
 		                		case 3:
-		                			echo "<h6 style='color: green;'>La tâche a été supprimé définitivement du système.<h6>";
+		                			echo "<h6 style='color: green;'>La tâche a été supprimé définitivement du système.</h6>";
 		                			break;
 		                		case 4:
-		                			echo "<h6 style='color: green;'>Le status du tâche a été modifié avec succes.<h6>";
+		                			echo "<h6 style='color: green;'>Le status du tâche a été modifié avec succes.</h6>";
 		                			break;
 		                		default:
-		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.<h6>";
+		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.</h6>";
 		                			break;
 							}
 	                	}

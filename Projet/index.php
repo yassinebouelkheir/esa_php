@@ -243,7 +243,7 @@
 					      <th scope="col">Tâche</th>
 					      <th scope="col">Date de création</th>
 					      <th scope="col">Date limite</th>
-					      <th scope="col">Date de réalisation</th>
+					      <th scope="col">Date de validation</th>
 					      <th scope="col">Validé par</th>
 					      <th scope="col"></th>
 					    </tr>

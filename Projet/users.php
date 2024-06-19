@@ -151,7 +151,7 @@
 						  			<input type='date' id='dataUserDateN' name='dataUserDateN' form='addUser' class='form-control' <?php echo "max='".date('Y-m-d', strtotime("-18 year", time()))."'" ?> required="required">
 						  		</td>
 						  		<td>
-						  			<input type='email' id='dataUserEmail' name='dataUserEmail' form='addUser' class='form-control' placeholder="Email" required="required">
+						  			<input type='email' id='dataUserEmail' name='dataUserEmail' form='addUser' class='form-control' placeholder="Email" maxlength='48' required="required">
 						  		</td>
 						  		<td>
 						  			<input type='tel' pattern="04[0-9]{8}" id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="(04xxxxxxxx)" required="required">
@@ -161,7 +161,42 @@
 						  		</td>
 						  		<td><button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'><i class='fas fa-plus'></i></button></td>
 						  	</tr>
-						  </tbody>
+						  	<form action='users.php' method='POST' id='searchUser'>
+							  	<tr>
+							      	<th scope='row'>
+							      		<input type='text' id='searchId' name='searchId' form='searchUser' class='form-control' placeholder='Identifiant' maxlength='24' required='required'>
+							      	</th>
+							      	<td>
+							      		<input type='text' id='searchUsername' name='searchUsername' form='searchUser' class='form-control' placeholder="Nom d'utilisateur" maxlength='24' required='required'>
+							      	</td>
+								    <td>
+							  			<select id="searchUserLevel" name="searchUserLevel" form='searchUser' class='form-control' required="required">
+											<option value="0">Stagaire</option>
+											<option value="1">Utilisateur</option>
+											<option value="11">Modérateur</option>
+											<option value="111">Chef des modérateurs</option>
+											<option value="1111">Administrateur</option>
+											<option value="11111">Gestionnaire</option>
+										</select>
+								    </td>
+								    <td>
+								    	<input type='datetime-local' id='searchUserDateN' name='searchUserDateN' form='searchUser' class='form-control' required='required'>
+								    </td>
+								    <td>
+								    	<input type='text' id='searchEmail' name='searchEmail' form='searchUser' class='form-control' placeholder="Email" maxlength='48' required='required'>
+								    </td>
+								    <td>
+								    	<input type='tel' pattern="04[0-9]{8}" id='searchUserTel' name='searchUserTel' form='searchUser' class='form-control' placeholder="(04xxxxxxxx)" required="required">
+							  		</td>
+							  		<td>
+							  			<input type='text' id='searchUserAddr' name='searchUserAddr' form='searchUser' class='form-control' placeholder="Adresse" maxlength='64' required="required">
+							  		</td>
+								    <td>
+								      	<button type='submit' form='searchVTask' class='btn btn-primary' name='searchVTaskUser' value='search'><i class='fas fa-search'></i></button>
+								    </td>
+							    </tr>
+							</form>
+						  	</tbody>
 						</table>
 					</form>
 	            </div>

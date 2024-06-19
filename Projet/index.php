@@ -57,6 +57,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title></title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<script src="https://kit.fontawesome.com/222ae32bee.js" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="css/styles.css">
 	</head>
 	<body style="background-image: none;">
@@ -91,7 +92,7 @@
 			{
 		        echo "<div class='row'>
 		            <div class='col-lg-12'>
-		            	<h3>Utilisateur sélectionné:</h3>
+		            	<h5>Utilisateur sélectionné:</h5>
 		            	<div class='input-group flex-nowrap'>
 		            		<form action='index.php' method='POST' id='userSelect'>
 							  	<select name='dataUserId' class='form-control' style='width: 280px;' form='userSelect'>";
@@ -118,7 +119,7 @@
 	        	echo "<div class='row'>";
 	    ?>
 	            <div class="col-lg-12">
-	                <h1>Tâches à réaliser</h1>
+	                <h2>Tâches</h2>
 	               	<?php 
 	             		if (isset($_GET['success']))
 						{
@@ -141,52 +142,70 @@
 							}
 	                	}
 	                ?>
-	                <table class="table table-bordered">
-					  	<thead>
-					    <tr>
-					      <th scope="col">ID</th>
-					      <th scope="col">Tâche</th>
-					      <th scope="col">Date de création</th>
-					      <th scope="col">Date limite</th>
-					      <th scope="col"></th>
-					    </tr>
-					  	</thead>
-					  	<tbody>
-					  	<?php
-							foreach ($todoArray as $data) 
-							{
-						        if(($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
-						        {
-								    echo "<tr>";
-								    echo "<th scope='row'>".$data[0]."</th>";
-								    echo "<td>".$data[4]."</td>";
-								    echo "<td>".$data[2]."</td>";
-								    if ((strtotime($data[5]) - time()) <= 86400)
-								    	echo "<td style='color: red; font-weight: bold;'>";
-								    else if ((strtotime($data[5]) - time()) <= 259200)
-								    	echo "<td style='color: orange; font-weight: bold;'>";
-								    else
-								    	echo "<td>";
+	                <form action='controlleurs/addtask.php' method='POST' id='addTask'>
+		                <table class="table table-bordered">
+						  	<thead>
+						    <tr>
+						      <th scope="col">ID</th>
+						      <th scope="col">Tâche</th>
+						      <th scope="col">Date de création</th>
+						      <th scope="col">Date limite</th>
+						      <th scope="col"></th>
+						    </tr>
+						  	</thead>
+						  	<tbody>
+						  	<?php
+								foreach ($todoArray as $data) 
+								{
+							        if(($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
+							        {
+									    echo "<tr>";
+									    echo "<th scope='row'>".$data[0]."</th>";
+									    echo "<td>".$data[4]."</td>";
+									    echo "<td>".$data[2]."</td>";
+									    if ((strtotime($data[5]) - time()) <= 86400)
+									    	echo "<td style='color: red; font-weight: bold;'>";
+									    else if ((strtotime($data[5]) - time()) <= 259200)
+									    	echo "<td style='color: orange; font-weight: bold;'>";
+									    else
+									    	echo "<td>";
 
-								    echo $data[5]."</td>";
-								    echo "<td>";
-								    if ($_SESSION['dataUserPermissions'] > 0)
-								    	echo "<a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
-								    if ($_SESSION['dataUserPermissions'] > 1)
-										echo "<a class='nav-link' href='edit.php?taskid=".$data[0]."'>Modifier</a>";
-									if ($_SESSION['dataUserPermissions'] > 11)
-										echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
-								    echo "</td></tr>";
-						        }
-							}
-					  	?>
-					  	</tbody>
-					</table>
+									    echo $data[5]."</td>";
+									    echo "<td>";
+									    if ($_SESSION['dataUserPermissions'] > 0)
+									    	echo "<a href='controlleurs/toggletask.php?taskid=".$data[0]."'><i class='fas fa-calendar-check'></i></a>&nbsp;&nbsp;";
+									    if ($_SESSION['dataUserPermissions'] > 1)
+											echo "<a href='edit.php?taskid=".$data[0]."'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;";
+										if ($_SESSION['dataUserPermissions'] > 11)
+											echo "<a href='confirmation.php?dataId=".$data[0]."&dataType=1'><i class='fas fa-trash-alt'></i></a>";
+									    echo "</td></tr>";
+							        }
+								}
+							  	if ($_SESSION['dataUserPermissions'] > 111) 
+							  	{
+			        				echo "
+								  	<tr>
+								      	<th scope='row'>x</th>
+									    <td>
+									    	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='256' required='required'></td>
+									    <td>x</td>
+									    <td>
+									      	<input type='datetime-local' id='dataTaskDL' name='dataTaskDL' form='addTask' class='form-control' min='".date('Y-m-d h:i', time()+86400)."' required='required'>
+									    </td>
+									    <td>
+									      	<button type='submit' form='addTask' class='btn btn-primary' name='dataTaskUser' value='".$dataUserId."'><i class='fas fa-plus'></i></button>
+									    </td>
+								    </tr>";
+							    }
+						    ?>
+						  	</tbody>
+						</table>
+					</form>
 	            </div>
 	        </div>
 	        <div class="row customrow">
 	        	<div class="col-lg-12">
-	                <h1>Tâches réalisé</h1>
+	                <h2>Tâches validé</h2>
 	                <table class="table table-bordered">
 					  <thead>
 					    <tr>
@@ -213,9 +232,9 @@
 							    echo "<td>".$data[6]."</td>";
 							    echo "<td>".getUsername(0, $data[8])."</td>";
 							    if ($_SESSION['dataUserPermissions'] > 0)
-							    	echo "<td><a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
+							    	echo "<td><a href='controlleurs/toggletask.php?taskid=".$data[0]."'><i class='fas fa-calendar-times'></i></a>&nbsp;&nbsp;";
 							    if ($_SESSION['dataUserPermissions'] > 11)
-							    	echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
+							    	echo "<a href='confirmation.php?dataId=".$data[0]."&dataType=1'><i class='fas fa-trash-alt'></i></a>";
 							    echo "</td></tr>";
 					        }
 						}
@@ -224,27 +243,6 @@
 					</table>
 	            </div>
 	        </div>
-	        <?php if ($_SESSION['dataUserPermissions'] > 111) {
-	        echo "<div class='row customrowlast'>
-	        	<div class='col-lg-12'>
-	                <h1>Ajouter une Tâche pour ".$dataUsername."</h1>
-	                <form action='controlleurs/addtask.php' method='POST' id='addTask'>
-						<fieldset>
-							<div class='mb-3'>
-							  	<label for='dataTaskText' class='form-label'>Tâche</label>
-							  	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='256' required='required'>
-							</div>
-							<div class='mb-3'>
-							  	<label for='dateTaskDL' class='form-label'>Date limite</label>
-							  	<input type='datetime-local' id='dataTaskDL' name='dataTaskDL' form='addTask' class='form-control' min='".date('Y-m-d h:i', time()+86400)."' required='required'>
-							</div>
-							<button type='submit' form='addTask' class='btn btn-primary' name='dataTaskUser' value='".$dataUserId."'>Ajouter la tâche</button>
-						</fieldset>
-					</form>
-	            </div>
-	        </div>";
-	    	}
-	    	?>
 	    <div>
 	</body>
 </html>

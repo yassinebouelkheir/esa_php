@@ -28,7 +28,7 @@
 	}
 
 	$error="";
-	if (isset($_POST['dataUpload']) && $_POST['dataFile'] == 'Upload the File')
+	if (isset($_POST['dataUpload']) && isset($_FILES['dataFile']))
 	{
   		if (isset($_FILES['dataFile']) && $_FILES['dataFile']['error'] === UPLOAD_ERR_OK)
   		{
@@ -38,9 +38,9 @@
 			$fileType = $_FILES['dataFile']['type'];
 			$fileNameCmps = explode(".", $fileName);
 			$fileExtension = strtolower(end($fileNameCmps));
-    		$newFileName = $_SESSION['dataUserId'] . '.' . $fileExtension;
+    		$newFileName = $_SESSION['dataUserId'] . '.jpeg';
 
-  			$uploadFileDir = 'images/user/';
+  			$uploadFileDir = 'images/users/';
   			$dest_path = $uploadFileDir . $newFileName;
   			
 	      	if(move_uploaded_file($fileTmpPath, $dest_path) == false) 
@@ -76,7 +76,7 @@
 			            				<img src="images/logo.png" width="300"></img>
 			              				<?php 
 				              				if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-				              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' width='150'></img>";
+				              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' width='150' height='150'></img>";
 				              				else 
 				              					echo "<img src='images/profile.png' width='150'></img>";
 
@@ -96,9 +96,9 @@
 			              					echo "<h5 class='text-black-60 mb-3'>Adresse: <br>".$_SESSION['dataUserAddr']."</h5>";
 			              				?>
 			            			</div>
-			            			<input type="file" name="dataFile" form="dataProfile" accept=".jpeg"/>
-			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataUpload" form="dataProfile" type="submit" value="UploadFile">Changer la photo de profile</button><br><br>
-			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataReturn" form="dataProfile" type="submit" value="GoBack">Revenir à l'accueil</button>
+			            			<input type="file" name="dataFile" id="dataFile" form="dataProfile" accept=".jpeg"/>
+			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataUpload" id="dataUpload" form="dataProfile" type="submit" value="UploadFile">Changer la photo de profile</button><br><br>
+			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataReturn" id="dataReturn" form="dataProfile" type="submit" value="GoBack">Revenir à l'accueil</button>
 			          			</div>
 			        		</div>
 			      		</div>

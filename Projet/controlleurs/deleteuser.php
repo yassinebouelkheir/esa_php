@@ -51,4 +51,6 @@
 			exit();
 		}
 	}
+	header('Location: ../users.php');
+	exit();
 ?>

@@ -75,7 +75,7 @@
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
 							if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30'>".$dataUsername;
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$dataUsername;
               				else 
               					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$dataUsername;
               				?>
@@ -94,7 +94,7 @@
 		            	<h3>Utilisateur sélectionné:</h3>
 		            	<div class='input-group flex-nowrap'>
 		            		<form action='index.php' method='POST' id='userSelect'>
-							  	<select class='form-select' name='dataUserId' style='width: 280px;' form='userSelect'>";
+							  	<select name='dataUserId' class='form-control' style='width: 280px;' form='userSelect'>";
 
 						  		if($dataUserId != -1) echo "<option value='-1' name='dataUserId'>-1 : Tout le monde</option>";
 								echo "<option value='".$dataUserId."' selected>".$dataUserId." : ".$dataUsername."</option>";

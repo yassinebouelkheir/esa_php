@@ -59,7 +59,7 @@
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
 							if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$_SESSION['dataUsername'];
               				else 
               					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
               				?>

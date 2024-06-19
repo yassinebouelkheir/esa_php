@@ -74,8 +74,8 @@
 					<div class="navbar-nav ml-auto">
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
-							if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$dataUsername;
+							if (file_exists("images/users/".$_SESSION['dataUserId'].".jpeg"))
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg?cachermv=".random_int(100, 999)."' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$dataUsername;
               				else 
               					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$dataUsername;
               				?>
@@ -122,8 +122,23 @@
 	               	<?php 
 	             		if (isset($_GET['success']))
 						{
-		                	if ($_GET['success'] == 1)
-		                		echo "<h6 style='color: green;'>La modification a été pris en compte et executé avec success.<h6>";
+							switch ($_GET['success']) {
+		                		case 1:
+		                			echo "<h6 style='color: green;'>La tâche a été ajouté avec success pour l'utilisateur sélectionné.<h6>";
+		                			break;
+		                		case 2:
+		                			echo "<h6 style='color: green;'>La tâche a été modifié et publié avec succes.<h6>";
+		                			break;
+		                		case 3:
+		                			echo "<h6 style='color: green;'>La tâche a été supprimé définitivement du système.<h6>";
+		                			break;
+		                		case 4:
+		                			echo "<h6 style='color: green;'>Le status du tâche a été modifié avec succes.<h6>";
+		                			break;
+		                		default:
+		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.<h6>";
+		                			break;
+							}
 	                	}
 	                ?>
 	                <table class="table table-bordered">
@@ -146,7 +161,14 @@
 								    echo "<th scope='row'>".$data[0]."</th>";
 								    echo "<td>".$data[4]."</td>";
 								    echo "<td>".$data[2]."</td>";
-								    echo "<td>".$data[5]."</td>";
+								    if ((strtotime($data[5]) - time()) <= 86400)
+								    	echo "<td style='color: red; font-weight: bold;'>";
+								    else if ((strtotime($data[5]) - time()) <= 259200)
+								    	echo "<td style='color: orange; font-weight: bold;'>";
+								    else
+								    	echo "<td>";
+
+								    echo $data[5]."</td>";
 								    echo "<td>";
 								    if ($_SESSION['dataUserPermissions'] > 0)
 								    	echo "<a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
@@ -210,13 +232,13 @@
 						<fieldset>
 							<div class='mb-3'>
 							  	<label for='dataTaskText' class='form-label'>Tâche</label>
-							  	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='128' required='required'>
+							  	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='256' required='required'>
 							</div>
 							<div class='mb-3'>
 							  	<label for='dateTaskDL' class='form-label'>Date limite</label>
-							  	<input type='datetime-local' id='dataTaskDL' name='dataTaskDL' form='addTask' class='form-control' min='".date('Y-m-d h:i')."' required='required'>
+							  	<input type='datetime-local' id='dataTaskDL' name='dataTaskDL' form='addTask' class='form-control' min='".date('Y-m-d h:i', time()+86400)."' required='required'>
 							</div>
-							<button type='submit' form='addTask' class='btn btn-primary' name='dataTaskUser' value='".$dataUserId."'>Ajouter</button>
+							<button type='submit' form='addTask' class='btn btn-primary' name='dataTaskUser' value='".$dataUserId."'>Ajouter la tâche</button>
 						</fieldset>
 					</form>
 	            </div>

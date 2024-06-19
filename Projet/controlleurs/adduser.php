@@ -29,17 +29,17 @@
 
 	if (!isset($_POST['dataUsername']) || !isset($_POST['dataUsername']))
 	{
-		header('Location: ../index.php');
+		header('Location: ../users.php?success=-1');
 		exit();
 	}		
 	
 	include 'functions.php';
 
-	$lastid = -1;
-	$userArray = getUsers(1);
-
 	if(in_array_r($_POST['dataUsername'], $userArray) == false)
 	{
+		$lastid = -1;
+		$userArray = getUsers(1);
+		
 		foreach ($userArray as $data) 
 		{
 			if((intval($data[0])-1) != $lastid || ($data[0] == "Id")) 
@@ -49,7 +49,7 @@
 
 		$lastid += 1;
 		$unixTime = strtotime($_POST['dataUserDateN']);
-		$newDate = date("d/m/Y", $unixTime);
+		$newDate = date("d-m-Y", $unixTime);
 		$password = randomPassword();
 		$password = sha1($password);
 
@@ -61,9 +61,6 @@
 		header('Location: ../users.php?success=1');
 		exit();
 	}
-	else
-	{
-		header('Location: ../users.php?success=0');
-		exit();
-	}
+	header('Location: ../users.php?success=0');
+	exit();
 ?>

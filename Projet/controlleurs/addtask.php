@@ -28,7 +28,7 @@
 	if (!isset($_POST['dataTaskDL']) || !isset($_POST['dataTaskText'])
 		|| empty($_POST['dataTaskDL']) || empty($_POST['dataTaskText']))
 	{
-		header('Location: ../index.php');
+		header('Location: ../index.php?success=-1');
 		exit();
 	}		
 	
@@ -44,9 +44,9 @@
 	}
 	$lastid += 1;
 	$unixTime = strtotime($_POST['dataTaskDL']);
-	$newDate = date("d/m/Y G:i", $unixTime);
+	$newDate = date("d-m-Y G:i", $unixTime);
 
-	$dataPush = array(strval($lastid), $_SESSION['dataUserId'], date('d/m/Y G:i'), $_POST['dataTaskUser'], $_POST['dataTaskText'], $newDate, "", 0, 0);
+	$dataPush = array(strval($lastid), $_SESSION['dataUserId'], date('d-m-Y G:i'), $_POST['dataTaskUser'], $_POST['dataTaskText'], $newDate, "", 0, 0);
 	array_push($todoArray, $dataPush);
 	sort($todoArray);
 	saveTodos(1, $todoArray);

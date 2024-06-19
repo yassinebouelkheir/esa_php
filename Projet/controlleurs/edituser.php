@@ -28,7 +28,10 @@
 	}		
 	if (!isset($_POST['dataUserId']) || empty($_POST['dataUserId']))
 	{
-		header('Location: ../users.php');
+		header('Location: ../users.php?success=-1');
 		exit();
 	}
+
+	header('Location: ../users.php?success=2');
+	exit();
 ?>

@@ -58,8 +58,8 @@
 					<div class="navbar-nav ml-auto">
 						<a class="nav-link" style="float: right;" href="profile.php">
 							<?php
-							if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$_SESSION['dataUsername'];
+							if (file_exists("images/users/".$_SESSION['dataUserId'].".jpeg"))
+              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg?cachermv=".random_int(100, 999)."' style='border-radius: 50%;' class='img-circle special-img' width='30' height='30'>".$_SESSION['dataUsername'];
               				else 
               					echo "<img src='images/profile.png' class='img-circle special-img' width='30'>".$_SESSION['dataUsername'];
               				?>
@@ -76,10 +76,23 @@
 	                <?php 
 	             		if (isset($_GET['success']))
 						{
-		                	if ($_GET['success'])
-		                		echo "<h6 style='color: green;'>L'utilisateur a été ajouté avec success.<h6>";
-		                	else 
-		                		echo "<h6 style='color: red;'>Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.<h6>";
+							switch ($_GET['success']) {
+								case 0:
+		                			echo "<h6 style='color: red;'>Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.<h6>";
+		                			break;
+		                		case 1:
+		                			echo "<h6 style='color: green;'>L'utilisateur a été ajouté avec success.<h6>";
+		                			break;
+		                		case 2:
+		                			echo "<h6 style='color: green;'>Les données de L'utilisateur a été modifié avec succes.<h6>";
+		                			break;
+		                		case 3:
+		                			echo "<h6 style='color: green;'>Le compte de l'utilisateur a été supprimé définitivement.<h6>";
+		                			break;
+		                		default:
+		                			echo "<h6 style='color: red;'>Un problème technique est survenu, veuillez réessayer ultérieurement.<h6>";
+		                			break;
+							}
 	                	}
 	                ?>
 	                <table class="table table-bordered">
@@ -145,7 +158,7 @@
 							</div>
 							<div class='mb-3'>
 							  	<label for='dataUserDateN' class='form-label'>Date de naissance</label>
-							  	<input type='date' id='dataUserDateN' name='dataUserDateN' form='addUser' class='form-control' min=".date('Y-m-d')." required="required">
+							  	<input type='date' id='dataUserDateN' name='dataUserDateN' form='addUser' class='form-control' <?php echo "max='".date('Y-m-d', strtotime("-18 year", time()))."'" ?> required="required">
 							</div>
 							<div class='mb-3'>
 							  	<label for='dataUserEmail' class='form-label'>Email</label>
@@ -153,11 +166,11 @@
 							</div>
 							<div class='mb-3'>
 							  	<label for='dataUserPhone' class='form-label'>Numéro de tel</label>
-							  	<input type='text' id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="Entrer le numéro de gsm" required="required">
+							  	<input type='tel' pattern="04[0-9]{8}" id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="Entrer le numéro de gsm (04xxxxxxxx)" required="required">
 							</div>
 							<div class='mb-3'>
 							  	<label for='dataUserAddr' class='form-label'>Adresse</label>
-							  	<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Entrer l'adresse de résidence" required="required">
+							  	<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Entrer l'adresse de résidence" maxlength='64' required="required">
 							</div>
 							<button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'>Ajouter et envoyer le mot de passe</button>
 						</fieldset>

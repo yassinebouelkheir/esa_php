@@ -28,7 +28,10 @@
 	}		
 	if (!isset($_POST['dataTaskId']) || empty($_POST['dataTaskId']))
 	{
-		header('Location: ../index.php');
+		header('Location: ../index.php?success=-1');
 		exit();
 	}
+	
+	header('Location: ../index.php?success=2');
+	exit();
 ?>

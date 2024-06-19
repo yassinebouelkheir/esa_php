@@ -42,15 +42,21 @@
 			    }
 			}
 			saveUsers(1, $usersArray);
-			header('Location: ../users.php');
+
+			$todoArray = getTodos(1);
+			for ($i = 0; $i < sizeof($todoArray); $i++)
+			{	
+			    if($_POST['dataAction'] == $todoArray[$i][3])
+			    {
+			        unset($todoArray[$i]);
+			        break;
+			    }
+			}
+			saveTodos(1, $todoArray);
+			header('Location: ../users.php?success=3');
 			exit();	
 		}
-		else
-		{
-			header('Location: ../users.php');
-			exit();
-		}
 	}
-	header('Location: ../users.php');
+	header('Location: ../users.php?success=-1');
 	exit();
 ?>

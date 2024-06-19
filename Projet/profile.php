@@ -75,18 +75,35 @@
 			            			<div class="mb-md-5 mt-md-4 pb-5">
 			            				<img src="images/logo.png" width="300"></img>
 			              				<?php 
-				              				if (file_exists('images/users/'.$_SESSION['dataUserId'].'.jpeg'))
-				              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg' style='border-radius: 50%;' width='150' height='150'></img>";
+				              				if (file_exists("images/users/".$_SESSION['dataUserId'].".jpeg"))
+				              					echo "<img src='images/users/".$_SESSION['dataUserId'].".jpeg?cachermv=".random_int(100, 999)."' style='border-radius: 50%;' width='150' height='150'></img>";
 				              				else 
 				              					echo "<img src='images/profile.png' width='150'></img>";
 
 			              					$userlevel = "";
-			              					if ($_SESSION['dataUserPermissions'] == 0) $userlevel = "Stagaire";
-			              					if ($_SESSION['dataUserPermissions'] == 1) $userlevel = "Utilisateur";
-			              					if ($_SESSION['dataUserPermissions'] == 11) $userlevel = "Modérateur";
-			              					if ($_SESSION['dataUserPermissions'] == 111) $userlevel = "Chef des modérateur";
-			              					if ($_SESSION['dataUserPermissions'] == 1111) $userlevel = "Administrateur";
-			              					if ($_SESSION['dataUserPermissions'] == 11111) $userlevel = "Gestionnaire";
+			              					switch ($_SESSION['dataUserPermissions']) {
+			              						case 0:
+				              						$userlevel = "Stagaire";
+				              						break;
+				              					case 1:
+				              						$userlevel = "Utilisateur";
+				              						break;
+				              					case 11:
+				              						$userlevel = "Modérateur";
+				              						break;
+				              					case 111:
+				              						$userlevel = "Chef des modérateur";
+				              						break;
+				              					case 1111:
+				              						$userlevel = "Administrateur";
+				              						break;
+				              					case 11111:
+				              						$userlevel = "Gestionnaire";
+				              						break;
+				              					default:
+				              						$userlevel = "Invité";
+				              						break;
+			              					}
 
 			              					echo "<h2 class='fw-bold mb-2 text-uppercase'>".$_SESSION['dataUsername']."</h2>";
 			              					echo "<h4 class='text-black-50 fw-bold mb-2 text-uppercase'>".$userlevel."</h4>";

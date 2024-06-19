@@ -51,8 +51,10 @@
 			    }
 			}
 			saveTodos(1, $todoArray);
+			header('Location: ../index.php?success=4');
+			exit();
 		}
 	}
-	header('Location: ../index.php?success=1');
+	header('Location: ../index.php?success=-1');
 	exit();
 ?>

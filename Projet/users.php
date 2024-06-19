@@ -32,14 +32,6 @@
 
 	$result = "";
 	$userArray = getUsers(0);
-
-	if (isset($_GET['success']))
-	{
-		if ($_GET['success'] == 1)
-			$result = "L'utilisateur a été ajouté avec success.";
-		else
-			$result = "Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.";
-	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -85,9 +77,9 @@
 	             		if (isset($_GET['success']))
 						{
 		                	if ($_GET['success'])
-		                		echo "<h6 style='color: green;'>".$result."<h6>";
+		                		echo "<h6 style='color: green;'>L'utilisateur a été ajouté avec success.<h6>";
 		                	else 
-		                		echo "<h6 style='color: red;'>".$result."<h6>";
+		                		echo "<h6 style='color: red;'>Opération annulé, ce nom d'utilisateur existe déjà dans la base des données.<h6>";
 	                	}
 	                ?>
 	                <table class="table table-bordered">

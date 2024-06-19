@@ -42,7 +42,7 @@
 			    }
 			}
 			saveTodos(1, $todoArray);
-			header('Location: ../index.php');
+			header('Location: ../index.php?success=1');
 			exit();	
 		}
 		else

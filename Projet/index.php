@@ -119,6 +119,13 @@
 	    ?>
 	            <div class="col-lg-12">
 	                <h1>Tâches à réaliser</h1>
+	               	<?php 
+	             		if (isset($_GET['success']))
+						{
+		                	if ($_GET['success'] == 1)
+		                		echo "<h6 style='color: green;'>La modification a été pris en compte et executé avec success.<h6>";
+	                	}
+	                ?>
 	                <table class="table table-bordered">
 					  	<thead>
 					    <tr>

@@ -46,7 +46,7 @@
 	$unixTime = strtotime($_POST['dataTaskDL']);
 	$newDate = date("d-m-Y G:i", $unixTime);
 
-	$dataPush = array(strval($lastid), $_SESSION['dataUserId'], date('d-m-Y G:i'), $_POST['dataTaskUser'], $_POST['dataTaskText'], $newDate, "", 0, 0);
+	$dataPush = array(strval($lastid), $_SESSION['dataUserId'], date('d-m-Y G:i'), $_POST['dataTaskUser'], $_POST['dataTaskText'], $newDate, "", 0, 0, $_POST['dataTaskPriority']);
 	array_push($todoArray, $dataPush);
 	sort($todoArray);
 	saveTodos(1, $todoArray);

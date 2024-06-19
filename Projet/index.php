@@ -147,6 +147,7 @@
 						  	<thead>
 						    <tr>
 						      <th scope="col">ID</th>
+						      <th scope="col">Priorité</th>
 						      <th scope="col">Tâche</th>
 						      <th scope="col">Date de création</th>
 						      <th scope="col">Date limite</th>
@@ -161,6 +162,7 @@
 							        {
 									    echo "<tr>";
 									    echo "<th scope='row'>".$data[0]."</th>";
+									    echo "<td>".$data[9]."</td>";
 									    echo "<td>".$data[4]."</td>";
 									    echo "<td>".$data[2]."</td>";
 									    if ((strtotime($data[5]) - time()) <= 86400)
@@ -187,8 +189,12 @@
 								  	<form action='controlleurs/addtask.php' method='POST' id='addTask'>
 									  	<tr>
 									      	<th scope='row'>x</th>
+									      	<td>
+										    	<input type='number' id='dataTaskPriority' name='dataTaskPriority' form='addTask' class='form-control' placeholder='Priorité' maxlength='24' required='required'>
+										    </td>
 										    <td>
-										    	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='256' required='required'></td>
+										    	<input type='text' id='dataTaskText' name='dataTaskText' form='addTask' class='form-control' placeholder='Tâche à faire' maxlength='256' required='required'>
+										    </td>
 										    <td>x</td>
 										    <td>
 										      	<input type='datetime-local' id='dataTaskDL' name='dataTaskDL' form='addTask' class='form-control' min='".date('Y-m-d h:i', time()+86400)."' required='required'>
@@ -205,6 +211,9 @@
 							      	<th scope='row'>
 							      		<input type='text' id='searchTaskId' name='searchTaskId' form='searchTask' class='form-control' placeholder='Identifiant' maxlength='24' required='required'>
 							      	</th>
+							      	<td>
+								    	<input type='number' id='searchTaskPriority' name='searchTaskPriority' form='searchTask' class='form-control' placeholder='Priorité' maxlength='24' required='required'>
+								    </td>
 								    <td>
 								    	<input type='text' id='searchTaskText' name='searchTaskText' form='searchTask' class='form-control' placeholder='Tâche' maxlength='256' required='required'>
 								    </td>
@@ -230,6 +239,7 @@
 					  <thead>
 					    <tr>
 					      <th scope="col">ID</th>
+					      <th scope="col">Priorité</th>
 					      <th scope="col">Tâche</th>
 					      <th scope="col">Date de création</th>
 					      <th scope="col">Date limite</th>
@@ -246,6 +256,7 @@
 					        {
 							    echo "<tr>";
 							    echo "<th scope='row'>".$data[0]."</th>";
+							    echo "<td>".$data[9]."</td>";
 							    echo "<td>".$data[4]."</td>";
 							    echo "<td>".$data[2]."</td>";
 							    echo "<td>".$data[5]."</td>";

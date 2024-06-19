@@ -26,8 +26,8 @@
 	$dataUsername = $_SESSION['dataUsername'];
 	$dataUserId = $_SESSION['dataUserId'];
 
-	$userArray = getUsers();
-	$todoArray = getTodos();
+	$userArray = getUsers(0);
+	$todoArray = getTodos(0);
 
 	if (isset($_POST['dataUserId']))
 	{
@@ -144,7 +144,7 @@
 								    if ($_SESSION['dataUserPermissions'] > 0)
 								    	echo "<a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme réalisé</a>";
 								    if ($_SESSION['dataUserPermissions'] > 1)
-										echo "<a class='nav-link' href='controlleurs/edittask.php?taskid=".$data[0]."'>Modifier</a>";
+										echo "<a class='nav-link' href='edit.php?taskid=".$data[0]."'>Modifier</a>";
 									if ($_SESSION['dataUserPermissions'] > 11)
 										echo "<a class='nav-link' href='confirmation.php?dataId=".$data[0]."&dataType=1'>Supprimer</a>";
 								    echo "</td></tr>";
@@ -182,7 +182,7 @@
 							    echo "<td>".$data[2]."</td>";
 							    echo "<td>".$data[5]."</td>";
 							    echo "<td>".$data[6]."</td>";
-							    echo "<td>".getUsername($data[8])."</td>";
+							    echo "<td>".getUsername(0, $data[8])."</td>";
 							    if ($_SESSION['dataUserPermissions'] > 0)
 							    	echo "<td><a class='nav-link' href='controlleurs/toggletask.php?taskid=".$data[0]."'>Marquer comme non-réalisé</a>";
 							    if ($_SESSION['dataUserPermissions'] > 11)

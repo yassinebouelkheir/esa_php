@@ -9,10 +9,15 @@
 <?php
 	date_default_timezone_set('Europe/Brussels');
 	
-	function getTodos()
+	function getTodos($folderindex)
 	{
 		$array = array();
-		if (($open = fopen("./data/todos.csv", "r")) !== false) {
+		if ($folderindex == 0)
+			$open = fopen('data/todos.csv', 'r');
+		else 
+			$open = fopen('../data/todos.csv', 'r');
+
+		if ($open !== false) {
 		    while (($data = fgetcsv($open, 1000, ";")) !== false) {
 		        $array[] = $data;
 		    }
@@ -21,9 +26,13 @@
 		return $array;
 	}
 
-	function saveTodos(array $array)
+	function saveTodos($folderindex, array $array)
 	{
-		$open = fopen('./data/todos.csv', 'w+'); 
+		if ($folderindex == 0)
+			$open = fopen('data/todos.csv', 'w+'); 
+		else 
+			$open = fopen('../data/todos.csv', 'w+');
+
 		foreach ($array as $data)
 		{
 		   fputcsv($open, $data, ';'); 
@@ -31,9 +40,15 @@
 		fclose($open);
 	}
 
-	function getUsers()
+	function getUsers($folderindex)
 	{
-		if (($open = fopen("./data/users.csv", "r")) !== false) {
+		$array = array();
+		if ($folderindex == 0)
+			$open = fopen('data/users.csv', 'r'); 
+		else 
+			$open = fopen('../data/users.csv', 'r');
+
+		if ($open !== false) {
 		    while (($data = fgetcsv($open, 1000, ";")) !== false) {
 		        $array[] = $data;
 		    }
@@ -42,9 +57,13 @@
 		return $array;
 	}
 
-	function saveUsers(array $array)
-	{
-		$open = fopen('./data/users.csv', 'w+'); 
+	function saveUsers($folderindex, array $array)
+	{	
+		if ($folderindex == 0)
+			$open = fopen('data/users.csv', 'w+'); 
+		else 
+			$open = fopen('../data/users.csv', 'w+');
+
 		foreach ($array as $data)
 		{
 		   fputcsv($open, $data, ';'); 
@@ -52,9 +71,9 @@
 		fclose($open);
 	}
 
-	function getUsername($userId)
+	function getUsername($folderindex, $userId)
 	{
-		$userArray = getUsers();
+		$userArray = getUsers($folderindex);
 		foreach ($userArray as $data) 
         	if($userId == $data[0])
 	    		return $data[1];

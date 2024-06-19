@@ -10,33 +10,33 @@
 	session_start();
 	if (!isset($_SESSION['dataUsername']))
 	{
-		header('Location: ./login.php');
+		header('Location: ../login.php');
 		exit();
 	}
 	if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > 1800)) {
 	    session_unset();
 	    session_destroy();
-	    header('Location: ./login.php');
+	    header('Location: ../login.php');
 		exit();
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 
 	if ($_SESSION['dataUserPermissions'] < 1111)
 	{
-		header('Location: ./denied.php');
+		header('Location: ../denied.php');
 		exit();
 	}
 
 	if (!isset($_POST['dataUsername']) || !isset($_POST['dataUsername']))
 	{
-		header('Location: ./index.php');
+		header('Location: ../index.php');
 		exit();
 	}		
 	
 	include 'functions.php';
 
 	$lastid = -1;
-	$userArray = getUsers();
+	$userArray = getUsers(1);
 
 	if(in_array_r($_POST['dataUsername'], $userArray) == false)
 	{
@@ -57,13 +57,13 @@
 		
 		array_push($userArray, $dataPush);
 		sort($userArray);
-		saveUsers($userArray);
-		header('Location: ./users.php?success=1');
+		saveUsers(1, $userArray);
+		header('Location: ../users.php?success=1');
 		exit();
 	}
 	else
 	{
-		header('Location: ./users.php?success=0');
+		header('Location: ../users.php?success=0');
 		exit();
 	}
 ?>

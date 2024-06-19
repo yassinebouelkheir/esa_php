@@ -19,7 +19,7 @@
 	$error = false;
 	if (isset($_POST['dataUsername']) && isset($_POST['dataPassword']))
 	{
-		$userArray = getUsers();
+		$userArray = getUsers(0);
 		foreach ($userArray as $data) 
 		{
 	        if($data[1] == $_POST['dataUsername'])

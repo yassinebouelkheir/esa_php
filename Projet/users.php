@@ -31,7 +31,7 @@
 	include 'controlleurs/functions.php';
 
 	$result = "";
-	$userArray = getUsers();
+	$userArray = getUsers(0);
 
 	if (isset($_GET['success']))
 	{

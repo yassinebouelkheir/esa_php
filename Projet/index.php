@@ -275,7 +275,7 @@
 					 			if (issetSearch(3, $_POST))
 								{
 									if (isset($_POST['searchVTaskId']) && ($_POST['searchVTaskId'] >= 0))
-										if ($_POST['searchTaskId'] != $data[0]) continue;
+										if ($_POST['searchVTaskId'] != $data[0]) continue;
 
 									if (isset($_POST['searchVTaskP']) && !empty($_POST['searchVTaskP']))
 										if ($_POST['searchVTaskP'] != $data[9]) continue;

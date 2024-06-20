@@ -73,7 +73,7 @@
 		<div class="container containerspecial">
 	        <div class="row customrow">
 	        	<div class="col-lg-12">
-	                <h1>Utilisateurs</h1>
+	                <h2>Utilisateurs</h2>
 	                <?php 
 	             		if (isset($_GET['success']))
 						{

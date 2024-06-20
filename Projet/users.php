@@ -123,22 +123,22 @@
 											if ($_POST['searchId'] != $data[0]) continue;
 
 										if (isset($_POST['searchUsername']) && !empty($_POST['searchUsername']))
-											if (!str_contains(strval($data[1]), strval($_POST['searchUsername']))) continue;
+											if (!stristr(strval($data[1]), strval($_POST['searchUsername']))) continue;
 
 										if (isset($_POST['searchUserLevel']) && !empty($_POST['searchUserLevel']))
 											if ($_POST['searchUserLevel'] != $data[3]) continue;
 
 										if (isset($_POST['searchUserDateN']) && !empty($_POST['searchUserDateN']))
-											if ($_POST['searchUserDateN'] != $data[4]) continue;
+											if (!timeRange(strtotime($data[4]), strtotime($_POST['searchUserDateN']))) continue;
 
 										if (isset($_POST['searchUserEmail']) && !empty($_POST['searchUserEmail']))
-											if (!str_contains(strval($data[5]), strval($_POST['searchUserEmail']))) continue;
+											if (!stristr(strval($data[5]), strval($_POST['searchUserEmail']))) continue;
 
 										if (isset($_POST['searchUserTel']) && !empty($_POST['searchUserTel']))
-											if (!str_contains(strval($data[6]), strval($_POST['searchUserTel']))) continue;
+											if (!stristr(strval($data[6]), strval($_POST['searchUserTel']))) continue;
 
 										if (isset($_POST['searchUserAddr']) && !empty($_POST['searchUserAddr']))
-											if (!str_contains(strval($data[7]), strval($_POST['searchUserAddr']))) continue;
+											if (!stristr(strval($data[7]), strval($_POST['searchUserAddr']))) continue;
 									}
 									echo "<tr>";
 									echo "<th scope='row'>".$data[0]."</th>";

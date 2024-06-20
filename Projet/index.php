@@ -160,22 +160,22 @@
 								{
 							        if (($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
 							        {
-							        	if (issetSearch(0, $_POST))
+							        	if (issetSearch(2, $_POST))
 										{
-											if (isset($_POST['searchTaskId']) && !empty($_POST['searchTaskId']))
+											if (isset($_POST['searchTaskId']) && ($_POST['searchTaskId'] >= 0))
 												if ($_POST['searchTaskId'] != $data[0]) continue;
 
 											if (isset($_POST['searchTaskPriority']) && !empty($_POST['searchTaskPriority']))
-												if ($_POST['searchTaskPriority'] != $data[0]) continue;
+												if ($_POST['searchTaskPriority'] != $data[9]) continue;
 
 											if (isset($_POST['searchTaskText']) && !empty($_POST['searchTaskText']))
-												if (!str_contains(strval($data[5]), strval($_POST['searchTaskText']))) continue;
+												if (!stristr(strval($data[4]), strval($_POST['searchTaskText']))) continue;
 
 											if (isset($_POST['searchTaskDC']) && !empty($_POST['searchTaskDC']))
-												if ($_POST['searchTaskDC'] != $data[4]) continue;
+												if (!timeRange(strtotime($data[2]), strtotime($_POST['searchTaskDC']))) continue;
 
 											if (isset($_POST['searchTaskDL']) && !empty($_POST['searchTaskDL']))
-												if ($_POST['searchTaskDL'] != $data[4]) continue;
+												if (!timeRange(strval($data[5]), strval($_POST['searchTaskDL']))) continue;
 										}
 									    echo "<tr>";
 									    echo "<th scope='row'>".$data[0]."</th>";
@@ -235,13 +235,13 @@
 								    	<input type='text' id='searchTaskText' name='searchTaskText' form='searchTask' class='form-control' placeholder='Tâche' maxlength='256'>
 								    </td>
 								    <td>
-								    	<input type='datetime-local' id='searchTaskDC' name='searchTaskDC' form='searchTask' class='form-control'>
+								    	<input type='date' id='searchTaskDC' name='searchTaskDC' form='searchTask' class='form-control'>
 								    </td>
 								    <td>
-								      	<input type='datetime-local' id='searchTaskDL' name='searchTaskDL' form='searchTask' class='form-control'>
+								      	<input type='date' id='searchTaskDL' name='searchTaskDL' form='searchTask' class='form-control'>
 								    </td>
 								    <td>
-								      	<button type='submit' form='searchTask' class='btn btn-primary' name='searchTaskUser' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>
+								      	<button type='submit' form='searchTask' class='btn btn-primary' name='dataUserId' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>
 								    </td>
 							    </tr>
 						    </form>
@@ -271,6 +271,31 @@
 						{
 					        if ($data[8] == $dataUserId && $data[7] == 1)
 					        {
+					        	$username = getUsername(0, $data[8]);
+					 			if (issetSearch(3, $_POST))
+								{
+									if (isset($_POST['searchVTaskId']) && ($_POST['searchVTaskId'] >= 0))
+										if ($_POST['searchTaskId'] != $data[0]) continue;
+
+									if (isset($_POST['searchVTaskP']) && !empty($_POST['searchVTaskP']))
+										if ($_POST['searchVTaskP'] != $data[9]) continue;
+
+									if (isset($_POST['searchVTaskText']) && !empty($_POST['searchVTaskText']))
+										if (!stristr(strval($data[4]), strval($_POST['searchVTaskText']))) continue;
+
+									if (isset($_POST['searchVTaskDC']) && !empty($_POST['searchVTaskDC']))
+										if (!timeRange(strtotime($data[2]), strtotime($_POST['searchVTaskDC']))) continue;
+
+									if (isset($_POST['searchVTaskDL']) && !empty($_POST['searchVTaskDL']))
+										if (!timeRange(strtotime($data[5]), strtotime($_POST['searchVTaskDL']))) continue;
+
+									if (isset($_POST['searchVTaskDV']) && !empty($_POST['searchVTaskDV']))
+										if (!timeRange(strtotime($data[6]), strtotime($_POST['searchVTaskDV']))) continue;
+
+									if (isset($_POST['searchVUserTask']) && !empty($_POST['searchVUserTask']))
+										if (!stristr(strval($username), strval($_POST['searchVUserTask']))) continue;
+								}
+
 							    echo "<tr>";
 							    echo "<th scope='row'>".$data[0]."</th>";
 							    echo "<td>".$data[9]."</td>";
@@ -278,7 +303,7 @@
 							    echo "<td>".$data[2]."</td>";
 							    echo "<td>".$data[5]."</td>";
 							    echo "<td>".$data[6]."</td>";
-							    echo "<td>".getUsername(0, $data[8])."</td>";
+							    echo "<td>".$username."</td>";
 							    if ($_SESSION['dataUserPermissions'] > 0)
 							    	echo "<td><a href='controlleurs/toggletask.php?taskid=".$data[0]."'><i class='fas fa-calendar-times'></i></a>&nbsp;&nbsp;";
 							    if ($_SESSION['dataUserPermissions'] > 11)
@@ -299,19 +324,19 @@
 							    	<input type='text' id='searchVTaskText' name='searchVTaskText' form='searchVTask' class='form-control' placeholder='Tâche' maxlength='256'>
 							    </td>
 							    <td>
-							    	<input type='datetime-local' id='searchVTaskDC' name='searchVTaskDC' form='searchVTask' class='form-control'>
+							    	<input type='date' id='searchVTaskDC' name='searchVTaskDC' form='searchVTask' class='form-control'>
 							    </td>
 							    <td>
-							      	<input type='datetime-local' id='searchVTaskDL' name='searchVTaskDL' form='searchVTask' class='form-control'>
+							      	<input type='date' id='searchVTaskDL' name='searchVTaskDL' form='searchVTask' class='form-control'>
 							    </td>
 							    <td>
-							      	<input type='datetime-local' id='searchVTaskDV' name='searchVTaskDV' form='searchVTask' class='form-control'>
+							      	<input type='date' id='searchVTaskDV' name='searchVTaskDV' form='searchVTask' class='form-control'>
 							    </td>
 							    <td>
 							    	<input type='text' id='searchVUserTask' name='searchVUserTask' form='searchVTask' class='form-control' placeholder="Nom d'utilisateur" maxlength='24'>
 							    </td>
 							    <td>
-							      	<button type='submit' form='searchVTask' class='btn btn-primary' name='searchVTaskUser' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>
+							      	<button type='submit' form='searchVTask' class='btn btn-primary' name='dataUserId' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>
 							    </td>
 						    </tr>
 						</form>

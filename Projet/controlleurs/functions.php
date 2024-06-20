@@ -102,6 +102,7 @@
 	    }
     	return false;
 	}
+
 	function issetSearch($resquestType, $postArray)
 	{
 		if ($resquestType == 1)
@@ -113,9 +114,40 @@
 		}
 		else if ($resquestType == 2)
 		{
-
+			if ((isset($postArray['searchTaskId']) || isset($postArray['searchTaskPriority']) || isset($postArray['searchTaskText']) || 
+				isset($postArray['searchTaskDC']) || isset($postArray['searchTaskDL'])) && isset($postArray['dataUserId']))
+				return true;
+		}
+		else if ($resquestType == 3)
+		{
+			if ((isset($postArray['searchVTaskId']) || isset($postArray['searchVTaskP']) || isset($postArray['searchVTaskText']) || 
+				isset($postArray['searchVTaskDC']) || isset($postArray['searchVTaskDV']) || isset($postArray['searchVUserTask'])) && isset($postArray['dataUserId']))
+				return true;
 		}
 		else return false;
 	}	
+
+	function timeRange($unixTimeSource, $unixTimeCompare)
+	{
+	    return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>

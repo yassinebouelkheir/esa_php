@@ -25,6 +25,11 @@
 		header('Location: denied.php');
 		exit();
 	}		
+	if (isset($_GET['dataType']) && ($_GET['dataType'] < 1 || $_GET['dataType'] > 2))
+	{
+		header('Location: ../index.php?success=-1');
+		exit();
+	}	
 ?>
 <!DOCTYPE html>
 <html>

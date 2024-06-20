@@ -45,9 +45,10 @@
 			    	}
 			    	else
 			    	{
-			    		$todoArray[$i][6] = date('d/m/Y G:i');
+			    		$todoArray[$i][6] = date('d-m-Y G:i');
 			    		$todoArray[$i][8] = $_SESSION['dataUserId'];
 			    	}
+			    	break;
 			    }
 			}
 			saveTodos(1, $todoArray);

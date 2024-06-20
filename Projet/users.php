@@ -131,7 +131,7 @@
 									echo "<td>".$data[5]."</td>";
 									echo "<td>".$data[6]."</td>";
 									echo "<td>".$data[7]."</td>";
-									echo "<td><a href='controlleurs/modifyuser.php?userid=".$data[0]."'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;<a href='confirmation.php?dataId=".$data[0]."&dataType=2'><i class='fas fa-trash-alt'></i></a></td></tr>";
+									echo "<td><a href='edit.php?dataId=".$data[0]."&dataType=2'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;<a href='confirmation.php?dataId=".$data[0]."&dataType=2'><i class='fas fa-trash-alt'></i></a></td></tr>";
 								}
 						  	?>
 						  	<tr>

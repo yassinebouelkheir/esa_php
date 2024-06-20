@@ -177,7 +177,7 @@
 									    if ($_SESSION['dataUserPermissions'] > 0)
 									    	echo "<a href='controlleurs/toggletask.php?taskid=".$data[0]."'><i class='fas fa-calendar-check'></i></a>&nbsp;&nbsp;";
 									    if ($_SESSION['dataUserPermissions'] > 1)
-											echo "<a href='edit.php?taskid=".$data[0]."'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;";
+											echo "<a href='edit.php?dataId=".$data[0]."&dataType=1'><i class='fas fa-edit'></i></a>&nbsp;&nbsp;";
 										if ($_SESSION['dataUserPermissions'] > 11)
 											echo "<a href='confirmation.php?dataId=".$data[0]."&dataType=1'><i class='fas fa-trash-alt'></i></a>";
 									    echo "</td></tr>";

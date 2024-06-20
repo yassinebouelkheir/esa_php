@@ -112,7 +112,7 @@
 									}
 		              				?>
 		              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg px-5" id="dataId" name="dataId" form="dataEdit" type="submit" <?php echo "value='".$_GET['dataId']."'" ?>>Modifier</button>
-		            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" form="dataEdit" type="submit" value="GoBack">Revenir en arrière</button>
+		            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" name="dataAction" form="dataEdit" type="submit" value="GoBack">Revenir en arrière</button>
 		            			</div>
 		            		</form>
 		          			</div>

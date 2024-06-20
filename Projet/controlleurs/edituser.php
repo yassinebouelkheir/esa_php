@@ -28,7 +28,10 @@
 	}		
 	if (!isset($_POST['dataId']) || !is_numeric($_POST['dataId']))
 	{
-		header('Location: ../users.php?success=-1');
+		if (isset($_POST['dataAction']))
+			header('Location: ../users.php');
+		else
+			header('Location: ../users.php?success=-1');
 		exit();
 	}
 

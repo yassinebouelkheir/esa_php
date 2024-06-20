@@ -28,7 +28,10 @@
 	}		
 	if (!isset($_POST['dataId']) || !is_numeric($_POST['dataId']))
 	{
-		header('Location: ../index.php?success=-1');
+		if (isset($_POST['dataAction']))
+			header('Location: ../index.php');
+		else
+			header('Location: ../index.php?success=-1');
 		exit();
 	}
 	

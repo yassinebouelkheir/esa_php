@@ -209,19 +209,19 @@
 						    <form action='index.php' method='POST' id='searchTask'>
 							  	<tr>
 							      	<th scope='row'>
-							      		<input type='text' id='searchTaskId' name='searchTaskId' form='searchTask' class='form-control' placeholder='Identifiant' maxlength='24' required='required'>
+							      		<input type='text' id='searchTaskId' name='searchTaskId' form='searchTask' class='form-control' placeholder='Identifiant' maxlength='24'>
 							      	</th>
 							      	<td>
-								    	<input type='number' id='searchTaskPriority' name='searchTaskPriority' form='searchTask' class='form-control' placeholder='Priorité' maxlength='24' required='required'>
+								    	<input type='number' id='searchTaskPriority' name='searchTaskPriority' form='searchTask' class='form-control' placeholder='Priorité' maxlength='24'>
 								    </td>
 								    <td>
-								    	<input type='text' id='searchTaskText' name='searchTaskText' form='searchTask' class='form-control' placeholder='Tâche' maxlength='256' required='required'>
+								    	<input type='text' id='searchTaskText' name='searchTaskText' form='searchTask' class='form-control' placeholder='Tâche' maxlength='256'>
 								    </td>
 								    <td>
-								    	<input type='datetime-local' id='searchTaskDC' name='searchTaskDC' form='searchTask' class='form-control' required='required'>
+								    	<input type='datetime-local' id='searchTaskDC' name='searchTaskDC' form='searchTask' class='form-control'>
 								    </td>
 								    <td>
-								      	<input type='datetime-local' id='searchTaskDL' name='searchTaskDL' form='searchTask' class='form-control' required='required'>
+								      	<input type='datetime-local' id='searchTaskDL' name='searchTaskDL' form='searchTask' class='form-control'>
 								    </td>
 								    <td>
 								      	<button type='submit' form='searchTask' class='btn btn-primary' name='searchTaskUser' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>
@@ -273,22 +273,25 @@
 					  	<form action='index.php' method='POST' id='searchVTask'>
 						  	<tr>
 						      	<th scope='row'>
-						      		<input type='text' id='searchVTaskId' name='searchVTaskId' form='searchVTask' class='form-control' placeholder='Identifiant' maxlength='24' required='required'>
+						      		<input type='text' id='searchVTaskId' name='searchVTaskId' form='searchVTask' class='form-control' placeholder='Identifiant' maxlength='24'>
 						      	</th>
 							    <td>
-							    	<input type='text' id='searchVTaskText' name='searchVTaskText' form='searchVTask' class='form-control' placeholder='Tâche' maxlength='256' required='required'>
+							    	<input type='number' id='searchVTaskP' name='searchVTaskP' form='searchVTask' class='form-control' placeholder='Tâche' maxlength='256'>
 							    </td>
 							    <td>
-							    	<input type='datetime-local' id='searchVTaskDC' name='searchVTaskDC' form='searchVTask' class='form-control' required='required'>
+							    	<input type='text' id='searchVTaskText' name='searchVTaskText' form='searchVTask' class='form-control' placeholder='Tâche' maxlength='256'>
 							    </td>
 							    <td>
-							      	<input type='datetime-local' id='searchVTaskDL' name='searchVTaskDL' form='searchVTask' class='form-control' required='required'>
+							    	<input type='datetime-local' id='searchVTaskDC' name='searchVTaskDC' form='searchVTask' class='form-control'>
 							    </td>
 							    <td>
-							      	<input type='datetime-local' id='searchVTaskDV' name='searchVTaskDV' form='searchVTask' class='form-control' required='required'>
+							      	<input type='datetime-local' id='searchVTaskDL' name='searchVTaskDL' form='searchVTask' class='form-control'>
 							    </td>
 							    <td>
-							    	<input type='text' id='searchVUserTask' name='searchVUserTask' form='searchVTask' class='form-control' placeholder="Nom d'utilisateur" maxlength='24' required='required'>
+							      	<input type='datetime-local' id='searchVTaskDV' name='searchVTaskDV' form='searchVTask' class='form-control'>
+							    </td>
+							    <td>
+							    	<input type='text' id='searchVUserTask' name='searchVUserTask' form='searchVTask' class='form-control' placeholder="Nom d'utilisateur" maxlength='24'>
 							    </td>
 							    <td>
 							      	<button type='submit' form='searchVTask' class='btn btn-primary' name='searchVTaskUser' <?php echo "value='".$dataUserId."'"; ?>><i class='fas fa-search'></i></button>

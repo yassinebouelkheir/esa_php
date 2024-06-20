@@ -75,7 +75,7 @@
 	{
 		$userArray = getUsers($folderindex);
 		foreach ($userArray as $data) 
-        	if($userId == $data[0])
+        	if ($userId == $data[0])
 	    		return $data[1];
 	}
 
@@ -102,4 +102,20 @@
 	    }
     	return false;
 	}
+	function issetSearch($resquestType, $postArray)
+	{
+		if ($resquestType == 1)
+		{
+			if ((isset($postArray['searchId']) || isset($postArray['searchUsername']) || isset($postArray['searchUserLevel']) || 
+				isset($postArray['searchUserDateN']) || isset($postArray['searchUserEmail']) || isset($postArray['searchUserTel']) ||
+				isset($postArray['searchUserAddr'])) && isset($postArray['searchAction']))
+				return true;
+		}
+		else if ($resquestType == 2)
+		{
+
+		}
+		else return false;
+	}	
+
 ?>

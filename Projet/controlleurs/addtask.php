@@ -25,9 +25,11 @@
 		header('Location: ../denied.php');
 		exit();
 	}
-	if (!isset($_POST['dataTaskDL']) || !isset($_POST['dataTaskText'])
-		|| empty($_POST['dataTaskDL']) || empty($_POST['dataTaskText']))
-	{
+	if (!isset($_POST['dataTaskDL']) || !isset($_POST['dataTaskText']) || !isset($_POST['dataUserId']) 
+		|| !isset($_POST['dataTaskUser']) || !isset($_POST['dataTaskPriority']) || empty($_POST['dataTaskDL']) 
+		|| empty($_POST['dataTaskText']) || empty($_POST['dataUserId']) || empty($_POST['dataTaskUser']) 
+		|| empty($_POST['dataTaskPriority']))
+
 		header('Location: ../index.php?success=-1');
 		exit();
 	}		
@@ -38,7 +40,7 @@
 	$todoArray = getTodos(1);
 	foreach ($todoArray as $data) 
 	{
-		if((intval($data[0])-1) != $lastid || ($data[0] == "Id")) 
+		if ((intval($data[0])-1) != $lastid || ($data[0] == "Id")) 
 			break;
 		$lastid = intval($data[0]);
 	}

@@ -109,13 +109,37 @@
 						      <th scope="col">Adresse</th>
 						      <th scope="col"></th>
 						    </tr>
-						  </thead>
-						  <tbody>
+						  	</thead>
+						  	<tbody>
 						  	<?php
 								foreach ($userArray as $data) 
 								{
-									if($data[0] == "Id")
+									if ($data[0] == "Id")
 										continue;
+
+									if (issetSearch(1, $_POST))
+									{
+										if (isset($_POST['searchId']) && !empty($_POST['searchId']))
+											if ($_POST['searchId'] != $data[0]) continue;
+
+										if (isset($_POST['searchUsername']) && !empty($_POST['searchUsername']))
+											if (!str_contains(strval($data[1]), strval($_POST['searchUsername']))) continue;
+
+										if (isset($_POST['searchUserLevel']) && !empty($_POST['searchUserLevel']))
+											if ($_POST['searchUserLevel'] != $data[3]) continue;
+
+										if (isset($_POST['searchUserDateN']) && !empty($_POST['searchUserDateN']))
+											if ($_POST['searchUserDateN'] != $data[4]) continue;
+
+										if (isset($_POST['searchUserEmail']) && !empty($_POST['searchUserEmail']))
+											if (!str_contains(strval($data[5]), strval($_POST['searchUserEmail']))) continue;
+
+										if (isset($_POST['searchUserTel']) && !empty($_POST['searchUserTel']))
+											if (!str_contains(strval($data[6]), strval($_POST['searchUserTel']))) continue;
+
+										if (isset($_POST['searchUserAddr']) && !empty($_POST['searchUserAddr']))
+											if (!str_contains(strval($data[7]), strval($_POST['searchUserAddr']))) continue;
+									}
 									echo "<tr>";
 									echo "<th scope='row'>".$data[0]."</th>";
 									echo "<td>".$data[1]."</td>";
@@ -161,44 +185,44 @@
 						  		</td>
 						  		<td><button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'><i class='fas fa-plus'></i></button></td>
 						  	</tr>
+						  	</form>
 						  	<form action='users.php' method='POST' id='searchUser'>
-							  	<tr>
-							      	<th scope='row'>
-							      		<input type='text' id='searchId' name='searchId' form='searchUser' class='form-control' placeholder='Identifiant' maxlength='24'>
-							      	</th>
-							      	<td>
-							      		<input type='text' id='searchUsername' name='searchUsername' form='searchUser' class='form-control' placeholder="Nom d'utilisateur" maxlength='24'>
-							      	</td>
-								    <td>
-							  			<select id="searchUserLevel" name="searchUserLevel" form='searchUser' class='form-control'>
-											<option value="0">Stagaire</option>
-											<option value="1">Utilisateur</option>
-											<option value="11">Modérateur</option>
-											<option value="111">Chef des modérateurs</option>
-											<option value="1111">Administrateur</option>
-											<option value="11111">Gestionnaire</option>
-										</select>
-								    </td>
-								    <td>
-								    	<input type='datetime-local' id='searchUserDateN' name='searchUserDateN' form='searchUser' class='form-control'>
-								    </td>
-								    <td>
-								    	<input type='text' id='searchEmail' name='searchEmail' form='searchUser' class='form-control' placeholder="Email" maxlength='48'>
-								    </td>
-								    <td>
-								    	<input type='tel' pattern="04[0-9]{8}" id='searchUserTel' name='searchUserTel' form='searchUser' class='form-control' placeholder="(04xxxxxxxx)">
-							  		</td>
-							  		<td>
-							  			<input type='text' id='searchUserAddr' name='searchUserAddr' form='searchUser' class='form-control' placeholder="Adresse" maxlength='64'>
-							  		</td>
-								    <td>
-								      	<button type='submit' form='searchVTask' class='btn btn-primary' name='searchVTaskUser' value='search'><i class='fas fa-search'></i></button>
-								    </td>
-							    </tr>
-							</form>
-						  	</tbody>
-						</table>
-					</form>
+						  	<tr>
+						      	<th scope='row'>
+						      		<input type='text' id='searchId' name='searchId' form='searchUser' class='form-control' placeholder='Identifiant' maxlength='24'>
+						      	</th>
+						      	<td>
+						      		<input type='text' id='searchUsername' name='searchUsername' form='searchUser' class='form-control' placeholder="Nom d'utilisateur" maxlength='24'>
+						      	</td>
+							    <td>
+						  			<select id="searchUserLevel" name="searchUserLevel" form='searchUser' class='form-control'>
+										<option value="0">Stagaire</option>
+										<option value="1">Utilisateur</option>
+										<option value="11">Modérateur</option>
+										<option value="111">Chef des modérateurs</option>
+										<option value="1111">Administrateur</option>
+										<option value="11111">Gestionnaire</option>
+									</select>
+							    </td>
+							    <td>
+							    	<input type='datetime-local' id='searchUserDateN' name='searchUserDateN' form='searchUser' class='form-control'>
+							    </td>
+							    <td>
+							    	<input type='text' id='searchUserEmail' name='searchUserEmail' form='searchUser' class='form-control' placeholder="Email" maxlength='48'>
+							    </td>
+							    <td>
+							    	<input type='tel' pattern="04[0-9]{8}" id='searchUserTel' name='searchUserTel' form='searchUser' class='form-control' placeholder="(04xxxxxxxx)">
+						  		</td>
+						  		<td>
+						  			<input type='text' id='searchUserAddr' name='searchUserAddr' form='searchUser' class='form-control' placeholder="Adresse" maxlength='64'>
+						  		</td>
+							    <td>
+							      	<button type='submit' form='searchUser' class='btn btn-primary' name='searchAction' id='searchAction' value='search'><i class='fas fa-search'></i></button>
+							    </td>
+						    </tr>
+						    </form>
+					  	</tbody>
+					</table>
 	            </div>
 	        </div>
 	    <div>

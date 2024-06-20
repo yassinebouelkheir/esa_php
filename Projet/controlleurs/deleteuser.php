@@ -28,35 +28,33 @@
 
 	include 'functions.php';
 
-	if (isset($_POST['dataAction']))
+	if (!isset($_POST['dataAction']) || !is_numeric($_POST['dataAction']))
 	{
-		if (is_numeric($_POST['dataAction']))
-		{
-			$usersArray = getUsers(1);
-			for ($i = 0; $i < sizeof($usersArray); $i++)
-			{	
-			    if(($_POST['dataAction'] == $usersArray[$i][0]) && ($_POST['dataAction'] != $_SESSION['dataUserId']))
-			    {
-			        unset($usersArray[$i]);
-			        break;
-			    }
-			}
-			saveUsers(1, $usersArray);
-
-			$todoArray = getTodos(1);
-			for ($i = 0; $i < sizeof($todoArray); $i++)
-			{	
-			    if($_POST['dataAction'] == $todoArray[$i][3])
-			    {
-			        unset($todoArray[$i]);
-			        break;
-			    }
-			}
-			saveTodos(1, $todoArray);
-			header('Location: ../users.php?success=3');
-			exit();	
-		}
+		header('Location: ../users.php?success=-1');
+		exit();
 	}
-	header('Location: ../users.php?success=-1');
-	exit();
+	
+	$usersArray = getUsers(1);
+	for ($i = 0; $i < sizeof($usersArray); $i++)
+	{	
+	    if (($_POST['dataAction'] == $usersArray[$i][0]) && ($_POST['dataAction'] != $_SESSION['dataUserId']))
+	    {
+	        unset($usersArray[$i]);
+	        break;
+	    }
+	}
+	saveUsers(1, $usersArray);
+
+	$todoArray = getTodos(1);
+	for ($i = 0; $i < sizeof($todoArray); $i++)
+	{	
+	    if ($_POST['dataAction'] == $todoArray[$i][3])
+	    {
+	        unset($todoArray[$i]);
+	        break;
+	    }
+	}
+	saveTodos(1, $todoArray);
+	header('Location: ../users.php?success=3');
+	exit();	
 ?>

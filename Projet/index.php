@@ -40,7 +40,7 @@
 		{
 			foreach ($userArray as $data) 
 			{
-	        	if($_POST['dataUserId'] == $data[0])
+	        	if ($_POST['dataUserId'] == $data[0])
 	    		{
 		    		$dataUsername = $data[1];
 		    		$dataUserId = $data[0];
@@ -97,11 +97,11 @@
 		            		<form action='index.php' method='POST' id='userSelect'>
 							  	<select name='dataUserId' class='form-control' style='width: 280px;' form='userSelect'>";
 
-						  		if($dataUserId != -1) echo "<option value='-1' name='dataUserId'>-1 : Tout le monde</option>";
+						  		if ($dataUserId != -1) echo "<option value='-1' name='dataUserId'>-1 : Tout le monde</option>";
 								echo "<option value='".$dataUserId."' selected>".$dataUserId." : ".$dataUsername."</option>";
 								foreach ($userArray as $data) 
 								{
-								    if($dataUserId != $data[0] && $data[1] != "Username")
+								    if ($dataUserId != $data[0] && $data[1] != "Username")
 									{
 									    echo "<option value='".$data[0]."'>".$data[0]." : ".$data[1]."</option>";
 								    }
@@ -158,8 +158,25 @@
 						  	<?php
 								foreach ($todoArray as $data) 
 								{
-							        if(($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
+							        if (($data[3] == $dataUserId || $data[3] == -1) && ($data[7] == 0))
 							        {
+							        	if (issetSearch(0, $_POST))
+										{
+											if (isset($_POST['searchTaskId']) && !empty($_POST['searchTaskId']))
+												if ($_POST['searchTaskId'] != $data[0]) continue;
+
+											if (isset($_POST['searchTaskPriority']) && !empty($_POST['searchTaskPriority']))
+												if ($_POST['searchTaskPriority'] != $data[0]) continue;
+
+											if (isset($_POST['searchTaskText']) && !empty($_POST['searchTaskText']))
+												if (!str_contains(strval($data[5]), strval($_POST['searchTaskText']))) continue;
+
+											if (isset($_POST['searchTaskDC']) && !empty($_POST['searchTaskDC']))
+												if ($_POST['searchTaskDC'] != $data[4]) continue;
+
+											if (isset($_POST['searchTaskDL']) && !empty($_POST['searchTaskDL']))
+												if ($_POST['searchTaskDL'] != $data[4]) continue;
+										}
 									    echo "<tr>";
 									    echo "<th scope='row'>".$data[0]."</th>";
 									    echo "<td>".$data[9]."</td>";
@@ -252,7 +269,7 @@
 					  	<?php
 						foreach ($todoArray as $data) 
 						{
-					        if($data[8] == $dataUserId && $data[7] == 1)
+					        if ($data[8] == $dataUserId && $data[7] == 1)
 					        {
 							    echo "<tr>";
 							    echo "<th scope='row'>".$data[0]."</th>";

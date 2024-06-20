@@ -22,9 +22,9 @@
 		$userArray = getUsers(0);
 		foreach ($userArray as $data) 
 		{
-	        if($data[1] == $_POST['dataUsername'])
+	        if ($data[1] == $_POST['dataUsername'])
 	        {
-	        	if(sha1($_POST['dataPassword']) == $data[2])
+	        	if (sha1($_POST['dataPassword']) == $data[2])
 	    		{
 	    			$_SESSION['dataUserId'] = $data[0];
 	    			$_SESSION['dataUserPermissions'] = $data[3];

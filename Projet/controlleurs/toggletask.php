@@ -28,34 +28,32 @@
 
 	include 'functions.php';
 
-	if (isset($_GET['taskid']))
+	if (!isset($_GET['taskid']) || !is_numeric($_GET['taskid']))
 	{
-		if (is_numeric($_GET['taskid']))
-		{
-			$todoArray = getTodos(1);
-			for ($i = 0; $i < sizeof($todoArray); $i++) 
-			{	
-			    if($_GET['taskid'] == $todoArray[$i][0])
-			    {
-			    	$todoArray[$i][7] = ($todoArray[$i][7] ? 0 : 1);
-			    	if ($todoArray[$i][7] == 0)
-			    	{
-			    		$todoArray[$i][6] = "";
-			    		$todoArray[$i][8] = -1;
-			    	}
-			    	else
-			    	{
-			    		$todoArray[$i][6] = date('d-m-Y G:i');
-			    		$todoArray[$i][8] = $_SESSION['dataUserId'];
-			    	}
-			    	break;
-			    }
-			}
-			saveTodos(1, $todoArray);
-			header('Location: ../index.php?success=4');
-			exit();
-		}
+		header('Location: ../index.php?success=-1');
+		exit();
 	}
-	header('Location: ../index.php?success=-1');
+	
+	$todoArray = getTodos(1);
+	for ($i = 0; $i < sizeof($todoArray); $i++) 
+	{	
+	    if ($_GET['taskid'] == $todoArray[$i][0])
+	    {
+	    	$todoArray[$i][7] = ($todoArray[$i][7] ? 0 : 1);
+	    	if ($todoArray[$i][7] == 0)
+	    	{
+	    		$todoArray[$i][6] = "";
+	    		$todoArray[$i][8] = -1;
+	    	}
+	    	else
+	    	{
+	    		$todoArray[$i][6] = date('d-m-Y G:i');
+	    		$todoArray[$i][8] = $_SESSION['dataUserId'];
+	    	}
+	    	break;
+	    }
+	}
+	saveTodos(1, $todoArray);
+	header('Location: ../index.php?success=4');
 	exit();
 ?>

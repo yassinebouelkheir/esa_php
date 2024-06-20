@@ -28,24 +28,22 @@
 
 	include 'functions.php';
 
-	if (isset($_POST['dataAction']))
+	if (!isset($_POST['dataAction']) || !is_numeric($_POST['dataAction']))
 	{
-		if (is_numeric($_POST['dataAction']))
-		{
-			$todoArray = getTodos(1);
-			for ($i = 0; $i < sizeof($todoArray); $i++)
-			{	
-			    if($_POST['dataAction'] == $todoArray[$i][0])
-			    {
-			        unset($todoArray[$i]);
-			        break;
-			    }
-			}
-			saveTodos(1, $todoArray);
-			header('Location: ../index.php?success=3');
-			exit();	
-		}
+		header('Location: ../index.php?success=-1');
+		exit();
 	}
-	header('Location: ../index.php?success=-1');
-	exit();
+	
+	$todoArray = getTodos(1);
+	for ($i = 0; $i < sizeof($todoArray); $i++)
+	{	
+	    if ($_POST['dataAction'] == $todoArray[$i][0])
+	    {
+	        unset($todoArray[$i]);
+	        break;
+	    }
+	}
+	saveTodos(1, $todoArray);
+	header('Location: ../index.php?success=3');
+	exit();	
 ?>

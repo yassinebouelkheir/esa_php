@@ -43,7 +43,7 @@
   			$uploadFileDir = 'images/users/';
   			$dest_path = $uploadFileDir . $newFileName;
   			
-	      	if(move_uploaded_file($fileTmpPath, $dest_path) == false) 
+	      	if (move_uploaded_file($fileTmpPath, $dest_path) == false) 
 	      	{
 	        	$error = 'Veuillez réssayez plus tard.';
 	      	}

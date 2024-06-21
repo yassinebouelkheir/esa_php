@@ -42,8 +42,8 @@
 	{	
 	    if ($_POST['dataId'] == $todoArray[$i][0])
 	    {
-	    	if (isset($_POST['dataTaskText'])) $todoArray[$i][4] = $_POST['dataTaskText'];
-	    	if (isset($_POST['dataTaskDL'])) $todoArray[$i][5] = date('d-m-Y G:i', strtotime($_POST['dataTaskDL']));
+	    	if (isset($_POST['dataTaskText']) && !empty($_POST['dataTaskText'])) $todoArray[$i][4] = $_POST['dataTaskText'];
+	    	if (isset($_POST['dataTaskDL']) && !empty($_POST['dataTaskDL'])) $todoArray[$i][5] = date('d-m-Y G:i', strtotime($_POST['dataTaskDL']));
 	    	break;
 	    }
 	}

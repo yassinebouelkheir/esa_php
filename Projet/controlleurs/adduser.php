@@ -53,8 +53,7 @@
 		$lastid += 1;
 		$unixTime = strtotime($_POST['dataUserDateN']);
 		$newDate = date("d-m-Y", $unixTime);
-		$password = randomPassword();
-		$password = sha1($password);
+		$password = sha1($_POST['dataUsername']);
 
 		$dataPush = array(strval($lastid), $_POST['dataUsername'], $password, $_POST['dataUserLevel'], $newDate, $_POST['dataUserEmail'], $_POST['dataUserPhone'], $_POST['dataUserAddr']);
 		

@@ -205,7 +205,7 @@
 									</select>
 							    </td>
 							    <td>
-							    	<input type='datetime-local' id='searchUserDateN' name='searchUserDateN' form='searchUser' class='form-control'>
+							    	<input type='date' id='searchUserDateN' name='searchUserDateN' form='searchUser' class='form-control'>
 							    </td>
 							    <td>
 							    	<input type='text' id='searchUserEmail' name='searchUserEmail' form='searchUser' class='form-control' placeholder="Email" maxlength='48'>

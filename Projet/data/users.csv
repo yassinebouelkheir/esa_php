@@ -1,6 +1,4 @@
 0;admin;d033e22ae348aeb5660fc2140aec35850c4da997;11111;14-06-1998;admin@localhost;0412356789;"Rue de bruxelles 2, 5000 Namur"
-1;test;727ad883d8d21946c0b474ba89df2bd423578359;1;09-06-1999;test@localhost;0454298121;"Rue des fous 129, 1000 Bruxelles"
-2;user;350dd005747bd71aeee826e10062afcf1ae31ca7;111;18-11-1996;user@localhost;0489326381;"Rue Piret Pauchet 66, 5000 Namur"
-3;testing;3f034da1f33d23d7402f34c62ab8aed6eb45de85;1111;09-06-2006;testing@localhost;0421563198;"Rue du bière 23, 4000 Liège"
-4;usertest;93021f0061333c3d552d6e8dab0332ccfc7a745e;1111;07-06-2006;usertest@localhost;0431742145;"Rue de la gare 238, 5010 Wépion"
+1;user;6f372c90822f7de721f3e6edc42653a746e81d90;1;21-06-2002;user@localhost;0423512387;"Rue des fous 129, 1000 Bruxelles"
+2;test;a94a8fe5ccb19ba61c4c0873d391e987982fbbd3;1111;08-06-2006;test@localhost;0418271562;"Rue du bière 23, 4000 Liège"
 Id;Username;Password;Permissions;DateN;Email;Tel;Addr

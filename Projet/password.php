@@ -41,7 +41,7 @@
 	        		$error = 2;
 	        		break;
 	        	}
-	        	$userArray[$i][2] = $password;
+	        	$userArray[$i][2] = sha1($_POST['dataPasswordConfirmation']);
 	        	saveUsers(0, $userArray);
 				header('Location: ../logout.php');
 				exit();

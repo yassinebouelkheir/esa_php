@@ -63,9 +63,14 @@
 		            					echo "<h2 class='fw-bold mb-2 text-uppercase'>MODIFICATION DE TâCHE</h2>
 		              					<h6 class='fw-bold mb-2 text-uppercase'>Modification du tâche numéro: ".$_GET['dataId']."</h6>";
 
-		              					echo "<div class='mb-3'>
-									  	<label for='dataTaskText' class='form-label'>Tâche</label>
-									  	<input type='text' id='dataTaskText' name='dataTaskText' form='dataEdit' class='form-control' placeholder='Tâche à faire' maxlength='128'>
+		              					echo "
+										<div class='mb-3'>
+									  		<label for='dataTaskPriority' class='form-label'>Priorité</label>
+									  		<input type='number' id='dataTaskPriority' name='dataTaskPriority' form='dataEdit' class='form-control' placeholder='Changer la priorité'>
+										</div>
+		              					<div class='mb-3'>
+									  		<label for='dataTaskText' class='form-label'>Tâche</label>
+									  		<input type='text' id='dataTaskText' name='dataTaskText' form='dataEdit' class='form-control' placeholder='Tâche à faire' maxlength='128'>
 										</div>
 										<div class='mb-3'>
 										  	<label for='dateTaskDL' class='form-label'>Date limite</label>

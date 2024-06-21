@@ -117,7 +117,7 @@
 
 	function timeRange($unixTimeSource, $unixTimeCompare)
 	{
-		if(abs($unixTimeSource - $unixTimeCompare) <= 86400)
+		if (abs($unixTimeSource - $unixTimeCompare) <= 86400)
 			return true;
 		else
 	    	return false;

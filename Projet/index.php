@@ -117,7 +117,9 @@
 	    	}
 	        else 
 	        	echo "<div class='row'>";
-	    ?>
+         		if (isset($_SESSION['warningChangePassword']))
+					echo "<h6 style='color: red;'>Votre compte n'est pas sécurisé, merci de change votre mot de passe le plutôt possible.</h6>";
+            ?>
 	            <div class="col-lg-12">
 	                <h2>Tâches</h2>
 	               	<?php 

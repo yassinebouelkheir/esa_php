@@ -24,7 +24,8 @@
 		{
 	        if ($data[1] == $_POST['dataUsername'])
 	        {
-	        	if (sha1($_POST['dataPassword']) == $data[2])
+	        	$password = sha1($_POST['dataPassword'])
+	        	if ($password == $data[2])
 	    		{
 	    			$_SESSION['dataUserId'] = $data[0];
 	    			$_SESSION['dataUserPermissions'] = $data[3];
@@ -34,6 +35,9 @@
 	    			$_SESSION['dataUserAddr'] = $data[7];
 		    		$_SESSION['dataUsername'] = $_POST['dataUsername'];
 		    		$_SESSION['LAST_ACTIVITY'] = time();
+		    		if ($password == sha1($data[1]))
+		    			$_SESSION['warningChangePassword'] = true;
+
 					header('Location: index.php');
 					exit();
 	    		}

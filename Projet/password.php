@@ -21,12 +21,6 @@
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 
-	if (isset($_POST['dataAction']) && !isset($_POST['dataId']))
-	{
-		header('Location: ../index.php');
-		exit();
-	}	
-
 	include 'controlleurs/functions.php';
 
 	$error = "";
@@ -76,16 +70,16 @@
 		            				<img src="images/logo.png" width="300"></img>
 									<h2 class='fw-bold mb-2 text-uppercase'>MODIFICATION DU MOT DE PASSE</h2>
 									<div class='mb-3'>
-								  		<label for='dataPassword' class='form-label'>Entrer le mot de passe actuel</label>
-								  		<input type='password' id='dataPassword' name='dataPassword' form='dataEdit' class='form-control' placeholder='Changer la priorité'>
+								  		<label for='dataPassword' class='form-label'>Entrer votre mot de passe actuel</label>
+								  		<input type='password' id='dataPassword' name='dataPassword' form='dataEdit' class='form-control' placeholder='Entrer le mot de passe' maxlength='128' required='required'>
 									</div>
 									<div class='mb-3'>
-								  		<label for='dataPasswordEntry' class='form-label'>Entrer le nouveau mot de passe</label>
-								  		<input type='password' id='dataPasswordEntry' name='dataPasswordEntry' form='dataEdit' class='form-control' placeholder='Changer la priorité'>
+								  		<label for='dataPasswordEntry' class='form-label'>Entrer votre nouveau mot de passe</label>
+								  		<input type='password' id='dataPasswordEntry' name='dataPasswordEntry' form='dataEdit' class='form-control' placeholder='Entrer le mot de passe' maxlength='128' required='required'>
 									</div>
 	              					<div class='mb-3'>
-								  		<label for='dataPasswordConfirmation' class='form-label'>Re-entrer le nouveau mot de passe</label>
-								  		<input type='password' id='dataPasswordConfirmation' name='dataPasswordConfirmation' form='dataEdit' class='form-control' placeholder='Tâche à faire' maxlength='128'>
+								  		<label for='dataPasswordConfirmation' class='form-label'>Re-entrer votre nouveau mot de passe</label>
+								  		<input type='password' id='dataPasswordConfirmation' name='dataPasswordConfirmation' form='dataEdit' class='form-control' placeholder='Re-entrer le mot de passe' maxlength='128' required='required'>
 									</div>
 									<p class="text-danger mb-5">
 										<?php 
@@ -96,7 +90,7 @@
 										?>
 									</p>
 		              				<button data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg px-5" id="dataId" name="dataId" form="dataEdit" type="submit">Modifier</button>
-		            				<br><br><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataAction" name="dataAction" form="dataEdit" type="submit" value="GoBack">Revenir en arrière</button>
+		            				<br><br><a href="profile.php"><button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" type="button">Revenir en arrière</button></a>
 		            			</div>
 		            		</form>
 		          			</div>

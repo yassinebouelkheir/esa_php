@@ -21,11 +21,6 @@
 	}
 	$_SESSION['LAST_ACTIVITY'] = time();
 
-	if ($_SESSION['dataUserPermissions'] < 11 || !isset($_GET['dataId']) || !isset($_GET['dataType']))
-	{
-		header('Location: denied.php');
-		exit();
-	}		
 	if (isset($_POST['dataAction']) && !isset($_POST['dataId']))
 	{
 		header('Location: ../index.php');

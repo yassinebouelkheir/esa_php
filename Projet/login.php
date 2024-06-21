@@ -24,7 +24,7 @@
 		{
 	        if ($data[1] == $_POST['dataUsername'])
 	        {
-	        	$password = sha1($_POST['dataPassword'])
+	        	$password = sha1($_POST['dataPassword']);
 	        	if ($password == $data[2])
 	    		{
 	    			$_SESSION['dataUserId'] = $data[0];

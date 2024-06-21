@@ -53,6 +53,11 @@
 	    	$error .= 'Error:' . $_FILES['dataFile']['error'];
 		}
   	}
+  	if (isset($_POST['dataPassword']))
+  	{
+  		header('Location: password.php');
+		exit();		
+  	}
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +120,7 @@
 			            			</div>
 			            			<input type="file" name="dataFile" id="dataFile" form="dataProfile" accept=".jpeg"/>
 			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataUpload" id="dataUpload" form="dataProfile" type="submit" value="UploadFile">Changer la photo de profile</button><br><br>
-			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataPassword" id="dataPassword" form="dataProfile" type="submit" value="ChangePwd">Changer le mot de passe</button>
+			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataPassword" id="dataPassword" form="dataProfile" type="submit" value="ChangePwd">Changer le mot de passe</button><br><br>
 			            			<button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg px-5" name="dataReturn" id="dataReturn" form="dataProfile" type="submit" value="GoBack">Revenir à l'accueil</button>
 			          			</div>
 			        		</div>

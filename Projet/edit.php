@@ -70,7 +70,7 @@
 										</div>
 		              					<div class='mb-3'>
 									  		<label for='dataTaskText' class='form-label'>Tâche</label>
-									  		<input type='text' id='dataTaskText' name='dataTaskText' form='dataEdit' class='form-control' placeholder='Tâche à faire' maxlength='128'>
+									  		<input type='text' id='dataTaskText' name='dataTaskText' form='dataEdit' class='form-control' placeholder='Tâche à faire' minlength='8' maxlength='128'>
 										</div>
 										<div class='mb-3'>
 										  	<label for='dateTaskDL' class='form-label'>Date limite</label>
@@ -84,7 +84,7 @@
 
 			              				echo "<div class='mb-3'>
 										  	<label for='dataUsername' class='form-label'>Nom d'utilisateur</label>
-										  	<input type='text' id='dataUsername' name='dataUsername' form='dataEdit' class='form-control' placeholder='Utilisateur' maxlength='24'>
+										  	<input type='text' id='dataUsername' name='dataUsername' form='dataEdit' class='form-control' placeholder='Utilisateur' minlength='4' maxlength='24'>
 										</div>
 										<div class='mb-3'>
 											<label for='dataUserLevel' class='form-label'>Poste</label>
@@ -111,7 +111,7 @@
 										</div>
 										<div class='mb-3'>
 										  	<label for='dataUserAddr' class='form-label'>Adresse de résidence</label>
-										  	<input type='text' id='dataUserAddr' name='dataUserAddr' form='dataEdit' class='form-control' placeholder='Adresse de résidence' maxlength='128'>
+										  	<input type='text' id='dataUserAddr' name='dataUserAddr' form='dataEdit' class='form-control' placeholder='Adresse de résidence' minlength='16' maxlength='128'>
 										</div>
 										";
 									}

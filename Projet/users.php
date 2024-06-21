@@ -160,7 +160,7 @@
 						  	?>
 						  	<tr>
 						  		<th scope='row'>x</th>
-						  		<td><input type='text' id='dataUsername' name='dataUsername' form='addUser' class='form-control' placeholder="Nom d'utilisateur(e)" required="required"></td>
+						  		<td><input type='text' id='dataUsername' name='dataUsername' form='addUser' class='form-control' placeholder="Nom d'utilisateur(e)" minlength='4' maxlength='24' required="required"></td>
 						  		<td>
 						  			<select id="dataUserLevel" name="dataUserLevel" form='addUser' class='form-control' required="required">
 										<option value="0">Stagaire</option>
@@ -181,7 +181,7 @@
 						  			<input type='tel' pattern="04[0-9]{8}" id='dataUserPhone' name='dataUserPhone' form='addUser' class='form-control' placeholder="(04xxxxxxxx)" required="required">
 						  		</td>
 						  		<td>
-						  			<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Adresse" maxlength='64' required="required">
+						  			<input type='text' id='dataUserAddr' name='dataUserAddr' form='addUser' class='form-control' placeholder="Adresse" minlength='16' maxlength='64' required="required">
 						  		</td>
 						  		<td><button type='submit' form='addUser' class='btn btn-primary' name='dataUserAction'><i class='fas fa-plus'></i></button></td>
 						  	</tr>
@@ -192,7 +192,7 @@
 						      		<input type='text' id='searchId' name='searchId' form='searchUser' class='form-control' placeholder='Identifiant' maxlength='24'>
 						      	</th>
 						      	<td>
-						      		<input type='text' id='searchUsername' name='searchUsername' form='searchUser' class='form-control' placeholder="Nom d'utilisateur" maxlength='24'>
+						      		<input type='text' id='searchUsername' name='searchUsername' form='searchUser' class='form-control' placeholder="Nom d'utilisateur" minlength='4' maxlength='24'>
 						      	</td>
 							    <td>
 						  			<select id="searchUserLevel" name="searchUserLevel" form='searchUser' class='form-control'>
@@ -214,7 +214,7 @@
 							    	<input type='tel' pattern="04[0-9]{8}" id='searchUserTel' name='searchUserTel' form='searchUser' class='form-control' placeholder="(04xxxxxxxx)">
 						  		</td>
 						  		<td>
-						  			<input type='text' id='searchUserAddr' name='searchUserAddr' form='searchUser' class='form-control' placeholder="Adresse" maxlength='64'>
+						  			<input type='text' id='searchUserAddr' name='searchUserAddr' form='searchUser' class='form-control' placeholder="Adresse" minlength='16' maxlength='64'>
 						  		</td>
 							    <td>
 							      	<button type='submit' form='searchUser' class='btn btn-primary' name='searchAction' id='searchAction' value='search'><i class='fas fa-search'></i></button>

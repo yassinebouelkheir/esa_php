@@ -75,11 +75,11 @@
 									</div>
 									<div class='mb-3'>
 								  		<label for='dataPasswordEntry' class='form-label'>Entrer votre nouveau mot de passe</label>
-								  		<input type='password' id='dataPasswordEntry' name='dataPasswordEntry' form='dataEdit' class='form-control' placeholder='Entrer le mot de passe' maxlength='128' required='required'>
+								  		<input type='password' id='dataPasswordEntry' name='dataPasswordEntry' form='dataEdit' class='form-control' placeholder='Entrer le mot de passe' minlength="8" maxlength='128' required='required'>
 									</div>
 	              					<div class='mb-3'>
 								  		<label for='dataPasswordConfirmation' class='form-label'>Re-entrer votre nouveau mot de passe</label>
-								  		<input type='password' id='dataPasswordConfirmation' name='dataPasswordConfirmation' form='dataEdit' class='form-control' placeholder='Re-entrer le mot de passe' maxlength='128' required='required'>
+								  		<input type='password' id='dataPasswordConfirmation' name='dataPasswordConfirmation' form='dataEdit' class='form-control' placeholder='Re-entrer le mot de passe' minlength="8" maxlength='128' required='required'>
 									</div>
 									<p class="text-danger mb-5">
 										<?php 

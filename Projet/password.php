@@ -1,5 +1,5 @@
 <!--
-	@filename  : edit.php 
+	@filename  : password.php 
     @projet    : Task Organiser
     @author    : Yassine BOUELKHEIR
     @version   : 1.0

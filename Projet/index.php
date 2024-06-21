@@ -175,7 +175,7 @@
 												if (!timeRange(strtotime($data[2]), strtotime($_POST['searchTaskDC']))) continue;
 
 											if (isset($_POST['searchTaskDL']) && !empty($_POST['searchTaskDL']))
-												if (!timeRange(strval($data[5]), strval($_POST['searchTaskDL']))) continue;
+												if (!timeRange(strtotime($data[5]), strtotime($_POST['searchTaskDL']))) continue;
 										}
 									    echo "<tr>";
 									    echo "<th scope='row'>".$data[0]."</th>";

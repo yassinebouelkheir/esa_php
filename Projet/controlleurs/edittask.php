@@ -48,6 +48,7 @@
 	    	break;
 	    }
 	}
+	usort($todoArray, function ($a, $b) {return $a['9'] > $b['9'];}); // source: https://stackoverflow.com/questions/50636675/php-sort-array-by-array-key
 	saveTodos(1, $todoArray);
 	header('Location: ../index.php?success=2');
 	exit();

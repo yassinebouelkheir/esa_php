@@ -301,7 +301,7 @@
 							    echo "<tr>";
 							    echo "<th scope='row'>".$data[0]."</th>";
 							    echo "<td>".$data[9]."</td>";
-							    echo "<td>".$data[4]."</td>";
+							    echo "<td><s>".$data[4]."</s></td>";
 							    echo "<td>".$data[2]."</td>";
 							    echo "<td>".$data[5]."</td>";
 							    echo "<td>".$data[6]."</td>";

@@ -41,16 +41,11 @@
 	{
 		if ($data[0] != "Id")
 		{
-			$lastid += 1;
-			$idexists = false; 
-			foreach ($todoArray as $doublecheck) 
-			{
-				if ($doublecheck[0] == $lastid)
-					$idexists = true;
-			}
-			if ($idexists == false) break;
+			if($lastid < $data[0])
+				$lastid = $data[0]+1;
 		}
 	}
+
 	$unixTime = strtotime($_POST['dataTaskDL']);
 	$newDate = date("d-m-Y G:i", $unixTime);
 
